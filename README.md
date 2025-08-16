@@ -111,3 +111,4 @@ This project is for educational and research purposes in quantitative finance mo
      ☐ 歴史的データに基づく変動率モデル - 恣意的な数値を排除
      ☐ 統合されたポートフォリオシミュレーション - 現実的なリスク・リターン分析
      ☐ CLAUDE.mdとREADMEの完全書き直し - 新しいアーキテクチャに対応# NVII
+# NVII
