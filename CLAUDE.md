@@ -2,47 +2,65 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-このファイルは、Claude Code (claude.ai/code) がこのリポジトリのコードを扱う際の指針を提供します。
+## Repository Overview
 
-## リポジトリ概要
+This is an advanced financial engineering project specialized for REX NVDA Growth & Income ETF (NVII) analysis. The repository contains mathematically rigorous Python scripts for leveraged ETF option pricing and comprehensive portfolio strategy modeling.
 
-これは REX NVDA Growth & Income ETF (NVII) に特化した高度な金融分析プロジェクトです。本リポジトリには、レバレッジETFオプション価格決定および包括的なポートフォリオ戦略モデリングのための、数学的に厳密なPythonスクリプトが含まれています。
-
-## プロジェクト構造
+## Project Structure
 
 ```
 NVII/
 ├── scripts/
-│   ├── advanced_option_engine.py       # 高度オプション価格決定エンジン（配当調整済みBlack-Scholes）
-│   └── portfolio_simulation_engine.py  # 統合ポートフォリオシミュレーションシステム
+│   ├── advanced_option_engine.py       # Advanced option pricing engine (dividend-adjusted Black-Scholes)
+│   └── portfolio_simulation_engine.py  # Integrated portfolio simulation system
 ├── docs/
-│   ├── ARCHITECTURE_REDESIGN_REPORT.md # アーキテクチャ再設計レポート
-│   ├── academic_paper.md               # 学術論文
-│   └── mathematical_research_proposal.md # 数学的研究提案
-├── requirements.txt                    # Python依存関係
-└── README.md                          # プロジェクト概要（日本語）
+│   ├── ARCHITECTURE_REDESIGN_REPORT.md # Architecture redesign report
+│   ├── COMPREHENSIVE_EDUCATIONAL_ANALYSIS_REPORT.md # Educational analysis
+│   ├── EXECUTIVE_SUMMARY.md            # Executive summary
+│   ├── NVII論文.md                     # Japanese academic paper
+│   ├── STUDENT_VISUAL_GUIDE.md         # Visual guide for students
+│   ├── academic_paper.md               # Academic paper (English)
+│   ├── mathematical_research_proposal.md # Mathematical research proposal
+│   └── records.md                      # Analysis records
+├── requirements.txt                    # Python dependencies
+├── README.md                          # Project overview (Japanese)
+└── CLAUDE.md                          # This file
 ```
 
-## 開発コマンド
+## Development Commands
 
-### 環境設定
+### Environment Setup
 ```bash
-# 依存関係のインストール
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 分析スクリプトの実行
+### Running Analysis Scripts
 ```bash
-# 高度オプション価格決定エンジンの実行
+# Run advanced option pricing engine
 python3 scripts/advanced_option_engine.py
 
-# 統合ポートフォリオシミュレーションの実行
+# Run integrated portfolio simulation
 python3 scripts/portfolio_simulation_engine.py
+
+# Alternative execution with explicit PYTHONPATH (if import issues occur)
+PYTHONPATH=/home/kafka/projects/NVII python3 scripts/portfolio_simulation_engine.py
 ```
 
-## コードアーキテクチャ（v2.0 - 完全再設計）
+### Testing and Validation
+- No formal test suite exists; scripts include validation through historical data analysis
+- Both scripts run comprehensive checks and output detailed results to verify mathematical accuracy
+- Scripts will output analysis results directly when executed with `python3`
 
-### 核心コンポーネント
+### Script Execution Context
+- Scripts are designed to run as standalone modules from the repository root
+- Both scripts include `if __name__ == "__main__":` blocks that execute comprehensive analysis
+- Expected runtime: 30-60 seconds for full analysis including Monte Carlo simulations
+- Output includes detailed financial metrics, risk analysis, and market regime comparisons
+
+## Code Architecture (v2.0 - Complete Redesign)
+
+### Core Components
 
 1. **DividendAdjustedBlackScholes クラス** (`advanced_option_engine.py`)
    - 配当調整を含む数学的に正確なBlack-Scholesオプション価格決定
@@ -128,12 +146,25 @@ python3 scripts/portfolio_simulation_engine.py
 - **ストレステスト**: 2008年危機レベルの極端シナリオでの戦略有効性
 - **数学的厳密性**: 全ての計算が学術的基準を満たす
 
-## 重要な指示
+## Important Instructions
 
-1. **現在のアーキテクチャ**: `advanced_option_engine.py` および `portfolio_simulation_engine.py` のみを使用してください
+1. **Current Architecture**: Use only `advanced_option_engine.py` and `portfolio_simulation_engine.py` - these are the authoritative analysis engines
 
-2. **数学的精度**: 全ての計算は配当調整とレバレッジ動態を適切に考慮する必要があります
+2. **Mathematical Precision**: All calculations must properly account for dividend adjustments and leverage dynamics
 
-3. **現実的な前提**: 理論的な数値ではなく、実際の市場データと取引コストに基づく分析を行ってください
+3. **Realistic Assumptions**: Base analysis on actual market data and transaction costs, not theoretical values
 
-4. **依存関係更新**: 新しい依存関係 `pandas-datareader` および `investiny` が追加されています
+4. **Dependencies**: Updated dependencies include `pandas-datareader` and `investiny` for market data access
+
+5. **Execution**: Always run scripts from repository root directory to ensure proper imports
+
+6. **Documentation**: When modifying analysis, update both English and Japanese documentation as needed
+
+## Current Market Context (Reference Values)
+
+These values are embedded in the scripts but provided here for reference:
+- **NVII Current Price**: $32.97
+- **Target Leverage**: 1.25x (range: 1.05x-1.50x)
+- **Risk-Free Rate**: 4.5% (3-month Treasury)
+- **Dividend Yield**: 6.30% (properly integrated in models)
+- **Position Allocation**: 50% covered calls, 50% unlimited upside

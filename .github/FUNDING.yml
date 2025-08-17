@@ -1,0 +1,16 @@
+# GitHub Sponsors funding file for NVII project
+# This enables the "Sponsor" button on the repository
+
+github: # Optional: GitHub username for sponsorship
+patreon: # Optional: Patreon username
+open_collective: # Optional: Open Collective username
+ko_fi: # Optional: Ko-fi username
+tidelift: # Optional: Tidelift package name
+community_bridge: # Optional: Community Bridge project name
+liberapay: # Optional: Liberapay username
+issuehunt: # Optional: IssueHunt username
+otechie: # Optional: Otechie username
+lfx_crowdfunding: # Optional: LFX Crowdfunding project name
+custom: # Optional: Custom sponsorship URLs
+  # - https://paypal.me/nviiproject
+  # - https://www.buymeacoffee.com/nviianalysis
