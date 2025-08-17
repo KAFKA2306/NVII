@@ -1,0 +1,294 @@
+name: NVII Weekly Dashboard Update
+
+on:
+  schedule:
+    # Run every Monday at 9:00 AM UTC (4:00 AM EST during standard time)
+    - cron: '0 9 * * MON'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update even if markets are closed'
+        required: false
+        default: 'false'
+        type: boolean
+
+  # Run on push to main for testing
+  push:
+    branches: [ main ]
+    paths: 
+      - 'scripts/**'
+      - '.github/workflows/**'
+
+env:
+  PYTHON_VERSION: '3.10'
+  TZ: 'America/New_York'
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Create required directories
+      run: |
+        mkdir -p logs dashboard docs
+        chmod 755 scripts/*.py
+    
+    - name: Check market hours (weekdays only)
+      id: market_check
+      run: |
+        current_day=$(date +%u)  # 1=Monday, 7=Sunday
+        current_hour=$(date +%H)
+        force_update="${{ github.event.inputs.force_update }}"
+        
+        # Market is open Monday-Friday, 9:30 AM - 4:00 PM EST
+        # Allow updates if it's a weekday (1-5) or if force_update is true
+        if [[ $current_day -le 5 ]] || [[ "$force_update" == "true" ]]; then
+          echo "market_open=true" >> $GITHUB_OUTPUT
+          echo "✅ Proceeding with update (weekday or forced)"
+        else
+          echo "market_open=false" >> $GITHUB_OUTPUT
+          echo "⏭️ Skipping update (weekend and not forced)"
+        fi
+    
+    - name: Run NVII weekly update
+      if: steps.market_check.outputs.market_open == 'true'
+      run: |
+        echo "🚀 Starting NVII Dashboard Update"
+        echo "📅 Update time: $(date)"
+        
+        # Set up logging
+        export PYTHONUNBUFFERED=1
+        
+        # Run the weekly update script
+        python3 scripts/weekly_update.py
+        
+        # Check if update was successful
+        if [ $? -eq 0 ]; then
+          echo "✅ Dashboard update completed successfully"
+        else
+          echo "❌ Dashboard update failed"
+          exit 1
+        fi
+    
+    - name: Verify generated files
+      if: steps.market_check.outputs.market_open == 'true'
+      run: |
+        echo "🔍 Verifying generated files..."
+        
+        required_files=(
+          "dashboard/index.html"
+          "docs/nvii_nvda_returns_comparison.md"
+          "docs/nvii_nvda_summary_stats.csv"
+          "docs/nvii_nvda_performance_chart.png"
+        )
+        
+        for file in "${required_files[@]}"; do
+          if [ -f "$file" ]; then
+            size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+            echo "✅ $file exists (${size} bytes)"
+          else
+            echo "❌ $file missing"
+            exit 1
+          fi
+        done
+    
+    - name: Generate update metadata
+      if: steps.market_check.outputs.market_open == 'true'
+      run: |
+        # Create metadata file for GitHub Pages
+        cat > docs/update_info.json << EOF
+        {
+          "last_update": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+          "update_type": "automated",
+          "workflow_run": "${{ github.run_number }}",
+          "commit_sha": "${{ github.sha }}",
+          "market_status": "open",
+          "files_updated": [
+            "dashboard/index.html",
+            "docs/nvii_nvda_returns_comparison.md",
+            "docs/nvii_nvda_summary_stats.csv",
+            "docs/nvii_nvda_daily_data.csv",
+            "docs/nvii_nvda_performance_chart.png"
+          ]
+        }
+        EOF
+    
+    - name: Commit and push changes
+      if: steps.market_check.outputs.market_open == 'true'
+      run: |
+        # Configure git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Add all updated files
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "📝 No changes to commit"
+        else
+          # Create commit with detailed message
+          git commit -m "🤖 Weekly NVII Dashboard Update - $(date +"%Y-%m-%d")
+
+          Automated update includes:
+          - Latest NVII and NVDA market data
+          - Updated performance analysis and charts
+          - Fresh dividend tracking information
+          - Risk metrics and alerts
+          
+          Generated by GitHub Actions workflow
+          Run #${{ github.run_number }} | Commit: ${{ github.sha }}
+          
+          🚀 View dashboard: https://${{ github.repository_owner }}.github.io/NVII/"
+          
+          # Push changes
+          git push
+          echo "✅ Changes committed and pushed successfully"
+        fi
+    
+    - name: Upload dashboard artifact
+      if: steps.market_check.outputs.market_open == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: nvii-dashboard-${{ github.run_number }}
+        path: |
+          dashboard/
+          docs/
+        retention-days: 30
+    
+    - name: Create release on major updates
+      if: steps.market_check.outputs.market_open == 'true' && github.event_name == 'schedule'
+      run: |
+        # Create weekly release every Monday
+        week_number=$(date +"%Y-W%U")
+        release_tag="weekly-${week_number}"
+        
+        # Check if release already exists
+        if git tag -l "$release_tag" | grep -q "$release_tag"; then
+          echo "📋 Release $release_tag already exists, skipping"
+        else
+          # Create and push tag
+          git tag -a "$release_tag" -m "Weekly Dashboard Release - Week $(date +"%U"), $(date +"%Y")"
+          git push origin "$release_tag"
+          echo "🏷️ Created release tag: $release_tag"
+        fi
+
+  deploy-pages:
+    needs: update-dashboard
+    if: needs.update-dashboard.result == 'success'
+    
+    runs-on: ubuntu-latest
+    
+    permissions:
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: main  # Use the updated main branch
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./dashboard
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+    
+    - name: Comment deployment URL
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "🌐 Dashboard deployed to: ${{ steps.deployment.outputs.page_url }}"
+        echo "📊 Update completed successfully!"
+
+  notify-failure:
+    needs: [update-dashboard, deploy-pages]
+    runs-on: ubuntu-latest
+    if: failure()
+    
+    steps:
+    - name: Create failure issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const title = `🚨 NVII Dashboard Update Failed - ${new Date().toISOString().split('T')[0]}`;
+          const body = `
+          ## Dashboard Update Failure
+          
+          **Workflow Run:** #${{ github.run_number }}
+          **Trigger:** ${{ github.event_name }}
+          **Time:** ${new Date().toISOString()}
+          
+          ### Failure Details
+          - Update Dashboard: ${{ needs.update-dashboard.result }}
+          - Deploy Pages: ${{ needs.deploy-pages.result }}
+          
+          ### Next Steps
+          1. Check the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          2. Verify market data API access
+          3. Check for any dependency issues
+          4. Run manual update if needed: \`python3 scripts/weekly_update.py\`
+          
+          ### Manual Recovery
+          \`\`\`bash
+          # Clone repository
+          git clone ${{ github.server_url }}/${{ github.repository }}.git
+          cd NVII
+          
+          # Install dependencies
+          pip install -r requirements.txt
+          
+          # Run manual update
+          python3 scripts/weekly_update.py
+          
+          # Commit and push
+          git add -A
+          git commit -m "Manual dashboard update"
+          git push
+          \`\`\`
+          
+          ---
+          *This issue was automatically created by the GitHub Actions workflow.*
+          `;
+          
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: title,
+            body: body,
+            labels: ['bug', 'automation', 'dashboard']
+          });
