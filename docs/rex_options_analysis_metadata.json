@@ -1,0 +1,45 @@
+{
+  "analysis_timestamp": "2025-08-17T20:57:59.569719",
+  "analysis_type": "options_factor_analysis",
+  "etfs_analyzed": [
+    "NVII",
+    "MSII",
+    "COII",
+    "TSII"
+  ],
+  "rex_family_config": {
+    "NVII": {
+      "name": "REX NVDA Growth & Income ETF",
+      "underlying": "NVDA",
+      "sector": "Technology/AI",
+      "color": "#1f77b4",
+      "launch_date": "2024-05-01"
+    },
+    "MSII": {
+      "name": "REX MSTR Growth & Income ETF",
+      "underlying": "MSTR",
+      "sector": "Bitcoin/FinTech",
+      "color": "#ff7f0e",
+      "launch_date": "2024-06-01"
+    },
+    "COII": {
+      "name": "REX COIN Growth & Income ETF",
+      "underlying": "COIN",
+      "sector": "Cryptocurrency",
+      "color": "#2ca02c",
+      "launch_date": "2024-07-01"
+    },
+    "TSII": {
+      "name": "REX TSLA Growth & Income ETF",
+      "underlying": "TSLA",
+      "sector": "Electric Vehicles",
+      "color": "#d62728",
+      "launch_date": "2024-08-01"
+    }
+  },
+  "analysis_parameters": {
+    "risk_free_rate": 0.045,
+    "covered_call_ratio": 0.5,
+    "option_maturity_days": 30
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "analysis_timestamp": "2025-08-17T20:49:43.130376",
+  "etf_count": 4,
+  "data_period": "6mo",
+  "rex_family_config": {
+    "NVII": {
+      "name": "REX NVDA Growth & Income ETF",
+      "underlying": "NVDA",
+      "underlying_name": "NVIDIA Corporation",
+      "sector": "Technology/AI",
+      "launch_date": "2024-05-01",
+      "description": "Core AI revolution leader and semiconductor champion",
+      "color": "#1f77b4",
+      "underlying_color": "#87CEEB",
+      "active": true
+    },
+    "MSII": {
+      "name": "REX MSTR Growth & Income ETF",
+      "underlying": "MSTR",
+      "underlying_name": "MicroStrategy Inc",
+      "sector": "Bitcoin/FinTech",
+      "launch_date": "2024-06-01",
+      "description": "Bitcoin proxy and business intelligence leader",
+      "color": "#ff7f0e",
+      "underlying_color": "#FFD700",
+      "active": true
+    },
+    "COII": {
+      "name": "REX COIN Growth & Income ETF",
+      "underlying": "COIN",
+      "underlying_name": "Coinbase Global Inc",
+      "sector": "Cryptocurrency Exchange",
+      "launch_date": "2024-07-01",
+      "description": "Leading cryptocurrency trading platform",
+      "color": "#2ca02c",
+      "underlying_color": "#90EE90",
+      "active": true
+    },
+    "TSII": {
+      "name": "REX TSLA Growth & Income ETF",
+      "underlying": "TSLA",
+      "underlying_name": "Tesla Inc",
+      "sector": "Electric Vehicles/Autonomous",
+      "launch_date": "2024-08-01",
+      "description": "EV revolution leader and autonomous technology pioneer",
+      "color": "#d62728",
+      "underlying_color": "#FFA07A",
+      "active": true
+    }
+  },
+  "strategy_config": {
+    "target_leverage": 1.25,
+    "leverage_range": [
+      1.05,
+      1.5
+    ],
+    "covered_call_coverage": 0.5,
+    "upside_unlimited_portion": 0.5,
+    "distribution_frequency": "weekly",
+    "risk_free_rate": 0.045,
+    "benchmark_period": "6mo"
+  },
+  "analysis_type": "comprehensive_etf_vs_underlying",
+  "language": "english"
+}
