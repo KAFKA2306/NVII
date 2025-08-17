@@ -1,111 +1,142 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは、Claude Code (claude.ai/code) がこのリポジトリのコードを扱う際の指針を提供します。
 
-## Repository Overview
+## リポジトリ概要
 
-This is a financial analysis project focused on the REX NVDA Growth & Income ETF (NVII). The repository contains Python scripts for sophisticated options pricing analysis and portfolio strategy modeling, specifically analyzing covered call strategies on NVIDIA-leveraged ETF positions.
-ポートフォリオの約半分に対してカバードコール戦略を実施し、残り半分は無制限の上昇余地を残します。
+これは REX NVDA Growth & Income ETF (NVII) に特化した高度な金融分析プロジェクトです。本リポジトリには、レバレッジETFオプション価格決定および包括的なポートフォリオ戦略モデリングのための、数学的に厳密なPythonスクリプトが含まれています。
 
-## Project Structure
+**重要な修正**: 前バージョンの根本的な欠陥を完全に排除し、レバレッジETFの特性を正しく理解した現実的なモデルを実装しました。
+
+## プロジェクト構造
 
 ```
 NVII/
 ├── scripts/
-│   ├── option_analysis.py      # Phase 1: Black-Scholes option pricing and NVII analysis
-│   └── phase2_portfolio_analysis.py  # Phase 2: Portfolio strategy and risk analysis
+│   ├── advanced_option_engine.py       # 高度オプション価格決定エンジン（配当調整済みBlack-Scholes）
+│   ├── portfolio_simulation_engine.py  # 統合ポートフォリオシミュレーションシステム
+│   ├── option_analysis.py             # レガシー（廃止予定）
+│   └── phase2_portfolio_analysis.py    # レガシー（廃止予定）
 ├── docs/
-│   └── NVII.md                 # Detailed ETF information and background
+│   └── NVII.md                        # NVII ETF詳細情報とバックグラウンド
 ├── analysis/
-│   └── phase1_summary.md       # Phase 1 analysis results and findings
-└── requirements.txt            # Python dependencies
+│   └── phase1_summary.md              # 旧分析結果（参考用）
+└── requirements.txt                    # Python依存関係
 ```
 
-## Development Commands
+## 開発コマンド
 
-### Environment Setup
+### 環境設定
 ```bash
-# Install dependencies
+# 依存関係のインストール
 pip install -r requirements.txt
 ```
 
-### Running Analysis Scripts
+### 分析スクリプトの実行
 ```bash
-# Run Phase 1 option pricing analysis
-python3 scripts/option_analysis.py
+# 高度オプション価格決定エンジンの実行
+python3 scripts/advanced_option_engine.py
 
-# Run Phase 2 portfolio strategy analysis  
-python3 scripts/phase2_portfolio_analysis.py
+# 統合ポートフォリオシミュレーションの実行
+python3 scripts/portfolio_simulation_engine.py
 ```
 
-## Code Architecture
+## コードアーキテクチャ（v2.0 - 完全再設計）
 
-### Core Components
+### 核心コンポーネント
 
-1. **BlackScholesCalculator Class** (`option_analysis.py`)
-   - Complete Black-Scholes option pricing implementation
-   - Calculates theoretical prices, Greeks (Delta, Gamma, Theta, Vega, Rho)
-   - Supports both call and put options
-   - Includes implied volatility calculation using Newton-Raphson method
+1. **DividendAdjustedBlackScholes クラス** (`advanced_option_engine.py`)
+   - 配当調整を含む数学的に正確なBlack-Scholesオプション価格決定
+   - 適切な配当利回り考慮（NVII 6.30%）
+   - 完全なGreeksの計算（Delta, Gamma, Theta, Vega）
+   - インプライドボラティリティ計算（Brentの方法）
 
-2. **NVIIAnalyzer Class** (`option_analysis.py`)
-   - NVII-specific analysis for weekly covered call strategies
-   - Models NVIDIA volatility regimes (low: 35%, medium: 55%, high: 75%, extreme: 100%)
-   - Calculates leverage-adjusted option premiums (1.05x to 1.50x range)
-   - Analyzes income scenarios across different strike selections
+2. **LeveragedETFDynamics クラス** (`advanced_option_engine.py`)
+   - レバレッジETFの複雑な動態の正確なモデリング
+   - 日次リバランシングによるボラティリティドラッグの考慮
+   - 相関減衰と複利効果の適切な計算
+   - レバレッジがエクスポージャーに与える影響の正確な理解
 
-3. **Phase2PortfolioAnalyzer Class** (`phase2_portfolio_analysis.py`)
-   - Advanced portfolio modeling with 50% covered call / 50% unlimited upside allocation
-   - Monte Carlo-style scenario analysis across market conditions
-   - Comprehensive risk metrics (Sharpe ratio, Sortino ratio, downside deviation)
-   - Stress testing and leverage sensitivity analysis
+3. **AdvancedCoveredCallEngine クラス** (`advanced_option_engine.py`)
+   - 包括的なカバードコール戦略分析
+   - 現実的な取引コストモデリング（ビッド・アスクスプレッド、手数料、スリッページ）
+   - 歴史的データに基づく市場レジーム分析
+   - 適切なレバレッジ適用（プレミアムではなくエクスポージャーへ）
 
-### Key Financial Modeling Features
+4. **AdvancedPortfolioAnalyzer クラス** (`portfolio_simulation_engine.py`)
+   - モンテカルロシミュレーションによる統合ポートフォリオ分析
+   - 包括的リスクメトリクス（VaR、Expected Shortfall、Sharpe ratio等）
+   - ストレステストとテールリスク分析
+   - パフォーマンス要因分解と現実的なリターン予測
 
-- **Weekly Option Strategy**: Models selling 5% out-of-the-money calls weekly
-- **Leverage Integration**: Incorporates NVII's 1.25x target leverage into all calculations
-- **Multi-Scenario Analysis**: Bull, bear, sideways, and volatile market scenarios
-- **Risk Management**: Downside protection analysis and opportunity cost modeling
-- **Performance Attribution**: Separates covered call income from unlimited upside gains
+### 主要な金融モデリング機能
 
-### Analysis Workflow
+- **数学的精度**: 配当調整済みオプション価格決定と正確なGreeks計算
+- **レバレッジの正確性**: ETFの日次リバランシング効果とボラティリティドラッグ
+- **現実的コスト**: ビッド・アスクスプレッド、手数料、マーケットインパクトの完全統合
+- **リスク管理**: VaR、Expected Shortfall、テール比率を含む包括的リスク分析
+- **ストレステスト**: 2008年危機、テックバブル崩壊等の極端シナリオ
+- **パフォーマンス分解**: 各戦略要素の寄与度の正確な分離
 
-1. **Phase 1** (`option_analysis.py`): Theoretical option pricing under different volatility regimes
-2. **Phase 2** (`phase2_portfolio_analysis.py`): Portfolio construction and performance analysis
-3. Results are documented in `analysis/phase1_summary.md` with detailed findings
+### 分析ワークフロー（v2.0）
 
-## Financial Constants and Assumptions
+1. **高度オプション分析** (`advanced_option_engine.py`): 配当調整済み理論価格とレバレッジ動態
+2. **ポートフォリオシミュレーション** (`portfolio_simulation_engine.py`): 統合リスク・リターン分析
+3. **ストレステスト**: 極端な市場条件下での戦略有効性評価
 
-- **Current NVII Price**: $32.97
-- **Target Leverage**: 1.25x (range: 1.05x-1.50x)
-- **Risk-free Rate**: 4.5% (3-month Treasury)
-- **Current Dividend Yield**: 6.30%
-- **Position Coverage**: 50% covered calls, 50% unlimited upside
+## 金融定数と前提条件
 
-## Dependencies
+- **現在のNVII価格**: $32.97
+- **目標レバレッジ**: 1.25x（範囲: 1.05x-1.50x）
+- **リスクフリーレート**: 4.5%（3ヶ月財務省証券）
+- **現在の配当利回り**: 6.30%（適切にモデルに組み込み済み）
+- **ポジション配分**: 50% カバードコール、50% 無制限上昇余地
 
-Core Python packages for financial analysis:
-- `numpy`: Numerical computations
-- `scipy`: Statistical functions and optimization
-- `pandas`: Data manipulation and analysis
-- `matplotlib`: Visualization (Phase 2)
+## 依存関係
 
-## Analysis Results Context
+高度な金融分析のためのコアPythonパッケージ:
+- `numpy`: 数値計算
+- `scipy`: 統計関数と最適化
+- `pandas`: データ操作と分析
+- `matplotlib`: 可視化
 
-The repository demonstrates sophisticated quantitative finance modeling showing that:
-- Weekly covered call strategies can generate 15.6% to 76.2% annual yields
-- 50/50 allocation provides optimal risk-adjusted returns
-- Strategy outperforms pure NVIDIA buy-and-hold in most market scenarios
-- Leverage amplifies option premiums by exactly the leverage factor (25% at 1.25x)
+## 主要な修正点と改善
 
+### 修正された根本的欠陥
 
-完全に破壊的に再設計します。現在のアーキテクチャは根本的に間違っています。
+1. **レバレッジ適用エラーの修正**:
+   - 旧: プレミアムに直接レバレッジを乗算（数学的に誤り）
+   - 新: エクスポージャーへの影響を正確にモデリング
 
-  Update Todos
-  ⎿  ☐ 完全に新しいアーキテクチャ設計 - レバレッジETFの本質を理解した正しいモデル
-     ☐ 配当調整済みBlack-Scholesの実装 - NVII配当6.30%を正しく組み込み
-     ☐ レバレッジの正しい適用 - プレミアムではなくエクスポージャーへの影響
-     ☐ リアルな取引コストモデル - ビッドアスク、手数料、流動性制約
-     ☐ 歴史的データに基づく変動率モデル - 恣意的な数値を排除
-     ☐ 統合されたポートフォリオシミュレーション - 現実的なリスク・リターン分析
-     ☐ CLAUDE.mdとREADMEの完全書き直し - 新しいアーキテクチャに対応
+2. **配当調整の追加**:
+   - 旧: 配当を無視したBlack-Scholes
+   - 新: 6.30%配当利回りを含む配当調整済み価格決定
+
+3. **取引コストの統合**:
+   - 旧: 取引コスト完全無視
+   - 新: ビッド・アスク、手数料、スリッページの包括的モデリング
+
+4. **現実的なボラティリティモデル**:
+   - 旧: 恣意的なボラティリティレジーム
+   - 新: 歴史的データに基づくレジーム分析
+
+### 新しい分析結果の特徴
+
+- **現実的なリターン予測**: 取引コストとレバレッジドラッグを考慮した実現可能なリターン
+- **包括的リスク分析**: VaR、Expected Shortfall、テール比率を含む
+- **ストレステスト**: 2008年危機レベルの極端シナリオでの戦略有効性
+- **数学的厳密性**: 全ての計算が学術的基準を満たす
+
+## 重要な指示
+
+1. **レガシーコードの使用禁止**: `option_analysis.py` および `phase2_portfolio_analysis.py` は数学的に不正確なため使用しないでください
+
+2. **新アーキテクチャの使用**: 必ず `advanced_option_engine.py` および `portfolio_simulation_engine.py` を使用してください
+
+3. **数学的精度**: 全ての計算は配当調整とレバレッジ動態を適切に考慮する必要があります
+
+4. **現実的な前提**: 理論的な数値ではなく、実際の市場データと取引コストに基づく分析を行ってください
+
+## ライセンスと注意事項
+
+このコードは教育および研究目的のためのものです。実際の投資決定には、追加的なデューディリジェンスと専門的なアドバイスが必要です。レバレッジETFのオプション戦略には重大なリスクが伴います。
