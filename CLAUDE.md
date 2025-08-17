@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 このファイルは、Claude Code (claude.ai/code) がこのリポジトリのコードを扱う際の指針を提供します。
 
 ## リポジトリ概要
@@ -14,14 +16,13 @@
 NVII/
 ├── scripts/
 │   ├── advanced_option_engine.py       # 高度オプション価格決定エンジン（配当調整済みBlack-Scholes）
-│   ├── portfolio_simulation_engine.py  # 統合ポートフォリオシミュレーションシステム
-│   ├── option_analysis.py             # レガシー（廃止予定）
-│   └── phase2_portfolio_analysis.py    # レガシー（廃止予定）
+│   └── portfolio_simulation_engine.py  # 統合ポートフォリオシミュレーションシステム
 ├── docs/
-│   └── NVII.md                        # NVII ETF詳細情報とバックグラウンド
-├── analysis/
-│   └── phase1_summary.md              # 旧分析結果（参考用）
-└── requirements.txt                    # Python依存関係
+│   ├── ARCHITECTURE_REDESIGN_REPORT.md # アーキテクチャ再設計レポート
+│   ├── academic_paper.md               # 学術論文
+│   └── mathematical_research_proposal.md # 数学的研究提案
+├── requirements.txt                    # Python依存関係
+└── README.md                          # プロジェクト概要（日本語）
 ```
 
 ## 開発コマンド
@@ -95,10 +96,12 @@ python3 scripts/portfolio_simulation_engine.py
 ## 依存関係
 
 高度な金融分析のためのコアPythonパッケージ:
-- `numpy`: 数値計算
-- `scipy`: 統計関数と最適化
-- `pandas`: データ操作と分析
-- `matplotlib`: 可視化
+- `numpy>=1.21.0`: 数値計算
+- `scipy>=1.7.0`: 統計関数と最適化
+- `pandas>=1.3.0`: データ操作と分析
+- `matplotlib>=3.4.0`: 可視化
+- `pandas-datareader>=0.10.0`: 金融データ取得
+- `investiny>=0.8.0`: 投資データ分析
 
 ## 主要な修正点と改善
 
@@ -129,13 +132,13 @@ python3 scripts/portfolio_simulation_engine.py
 
 ## 重要な指示
 
-1. **レガシーコードの使用禁止**: `option_analysis.py` および `phase2_portfolio_analysis.py` は数学的に不正確なため使用しないでください
+1. **現在のアーキテクチャ**: `advanced_option_engine.py` および `portfolio_simulation_engine.py` のみを使用してください
 
-2. **新アーキテクチャの使用**: 必ず `advanced_option_engine.py` および `portfolio_simulation_engine.py` を使用してください
+2. **数学的精度**: 全ての計算は配当調整とレバレッジ動態を適切に考慮する必要があります
 
-3. **数学的精度**: 全ての計算は配当調整とレバレッジ動態を適切に考慮する必要があります
+3. **現実的な前提**: 理論的な数値ではなく、実際の市場データと取引コストに基づく分析を行ってください
 
-4. **現実的な前提**: 理論的な数値ではなく、実際の市場データと取引コストに基づく分析を行ってください
+4. **依存関係更新**: 新しい依存関係 `pandas-datareader` および `investiny` が追加されています
 
 ## ライセンスと注意事項
 
