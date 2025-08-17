@@ -3,9 +3,6 @@
 ## 研究概要
 
 **研究課題**: レバレッジETFに対するカバードコール戦略の確率論的最適化と実証的検証  
-**申請者**: 金融工学研究チーム  
-**所属**: 量的金融分析研究所  
-**研究期間**: 24ヶ月（2025年1月 - 2026年12月）  
 **分野**: 金融工学、確率論、計量経済学  
 
 ---
@@ -408,11 +405,6 @@ $$P(\text{Loss} > L) = \int_{L}^{\infty} f_{extreme}(x) dx$$
 6. Embrechts, P., Klüppelberg, C., & Mikosch, T. (1997). *Modelling Extremal Events*. Springer-Verlag.
 7. Tsay, R.S. (2010). *Analysis of Financial Time Series*. 3rd Edition, Wiley.
 
----
-
-**研究責任者**: 金融工学研究チーム  
-**承認日**: 2025年1月  
-**最終更新**: 2025年8月17日
 
 ---
 
