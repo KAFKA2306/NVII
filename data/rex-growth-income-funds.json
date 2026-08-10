@@ -1,0 +1,17 @@
+{
+  "schema_version": "rex-growth-income-fund-master.v1",
+  "as_of": "2026-08-11",
+  "universe_source": "https://www.rexshares.com/rex-shares-launches-rex-growth-income-universe-etf/",
+  "lifecycle_source": "https://www.rexshares.com/rex-growth-income-etfs-to-liquidate-june-16-2026/",
+  "funds": [
+    {"ticker":"NVII","legal_name":"REX NVDA Growth & Income ETF","underlying":"NVIDIA (NVDA)","lifecycle_status":"ACTIVE","product_url":"https://www.rexshares.com/nvii/","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"TSII","legal_name":"REX TSLA Growth & Income ETF","underlying":"Tesla (TSLA)","lifecycle_status":"ACTIVE","product_url":"https://www.rexshares.com/tsii/","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"MSII","legal_name":"REX MSTR Growth & Income ETF","underlying":"Strategy / MicroStrategy (MSTR)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/msii/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"COII","legal_name":"REX COIN Growth & Income ETF","underlying":"Coinbase (COIN)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/coii/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"HOII","legal_name":"REX HOOD Growth & Income ETF","underlying":"Robinhood (HOOD)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/hoii/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"PLTI","legal_name":"REX PLTR Growth & Income ETF","underlying":"Palantir (PLTR)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/plti/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"CWII","legal_name":"REX CRWV Growth & Income ETF","underlying":"CoreWeave (CRWV)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/cwii/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"LLII","legal_name":"REX LLY Growth & Income ETF","underlying":"Eli Lilly (LLY)","lifecycle_status":"LIQUIDATED","product_url":"https://www.rexshares.com/llii/","liquidation_date":"2026-06-16","lifecycle_as_of":"2026-08-11"},
+    {"ticker":"WMTI","legal_name":"REX WMT Growth & Income ETF","underlying":"Walmart (WMT)","lifecycle_status":"ACTIVE","product_url":"https://www.rexshares.com/wmti/","lifecycle_as_of":"2026-08-11"}
+  ]
+}
