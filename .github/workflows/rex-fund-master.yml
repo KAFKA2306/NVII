@@ -1,0 +1,40 @@
+name: REX fund master integrity
+
+on:
+  pull_request:
+    paths:
+      - 'data/rex-growth-income-funds.json'
+      - 'scripts/validate_rex_fund_master.py'
+      - 'tests/test_rex_fund_master.py'
+      - '.github/workflows/rex-fund-master.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/rex-growth-income-funds.json'
+      - 'scripts/validate_rex_fund_master.py'
+      - 'tests/test_rex_fund_master.py'
+      - '.github/workflows/rex-fund-master.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile validator and tests
+        run: python -m py_compile scripts/validate_rex_fund_master.py tests/test_rex_fund_master.py
+      - name: Run lifecycle contract tests
+        run: python -m unittest tests.test_rex_fund_master -v
+      - name: Validate repository fund master
+        run: python scripts/validate_rex_fund_master.py
+      - name: Clean runtime caches
+        run: find . -type d -name __pycache__ -prune -exec rm -rf {} +
+      - name: Require clean checkout
+        run: test -z "$(git status --porcelain --untracked-files=all)"
