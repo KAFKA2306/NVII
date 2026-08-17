@@ -1,5 +1,7 @@
 # NVII カバードコール戦略分析システム
 
+[![REX fund master integrity](https://github.com/KAFKA2306/NVII/actions/workflows/rex-fund-master.yml/badge.svg)](https://github.com/KAFKA2306/NVII/actions/workflows/rex-fund-master.yml)
+
 ## 概要
 
 REX NVDA Growth & Income ETF (NVII) に特化した高度な金融工学分析プラットフォームです。本システムは、レバレッジETFの複雑な動態を正確にモデリングし、カバードコール戦略の包括的なリスク・リターン分析を提供します。
