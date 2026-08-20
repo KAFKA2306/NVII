@@ -1,0 +1,123 @@
+{
+  "schema_version": "rex-growth-income-active-observations.v1",
+  "observed_at": "2026-08-21T08:03:56+09:00",
+  "source_policy": "Official REX product pages only. Distribution Rate is not total return. Estimated return of capital is preserved as disclosed, not inferred.",
+  "funds": [
+    {
+      "ticker": "NVII",
+      "source_url": "https://www.rexshares.com/nvii/",
+      "observation": {
+        "as_of": "2026-08-19",
+        "nav_usd": 24.33,
+        "market_price_usd": 24.42,
+        "premium_discount_percent": 0.36,
+        "fund_assets_usd": 115750800,
+        "shares_outstanding": 4740000,
+        "number_of_holdings": 8,
+        "total_expense_ratio_percent": 1.49,
+        "leverage": 1.25
+      },
+      "distribution": {
+        "as_of": "2026-08-17",
+        "distribution_rate_percent": 40.67,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.84,
+        "sec_yield_as_of": "2026-07-31",
+        "estimated_roc_percent": 97.70,
+        "gross_expense_ratio_percent": 0.99,
+        "distribution_rate_is_total_return": false
+      },
+      "holdings": {
+        "as_of": "2026-08-19",
+        "published_holding_count": 8,
+        "net_weight_sum_percent": 100.01,
+        "rows": [
+          {"symbol":"TBILL","weight_percent":94.12},
+          {"symbol":"2NVDA 260821C00207400","weight_percent":6.02},
+          {"symbol":"FGXXX","weight_percent":0.09},
+          {"symbol":"2NVDA 260821C00221910","weight_percent":0.00},
+          {"symbol":"2NVDA 260821C00224130","weight_percent":0.00},
+          {"symbol":"2NVDA 260821C00229810","weight_percent":-0.03},
+          {"symbol":"Cash&Other","weight_percent":-0.05},
+          {"symbol":"2NVDA 260821P00207400","weight_percent":-0.14}
+        ]
+      }
+    },
+    {
+      "ticker": "TSII",
+      "source_url": "https://www.rexshares.com/tsii/",
+      "observation": {
+        "as_of": "2026-08-19",
+        "nav_usd": 13.15,
+        "market_price_usd": 13.14,
+        "premium_discount_percent": -0.04,
+        "fund_assets_usd": 29827800,
+        "shares_outstanding": 2270000,
+        "number_of_holdings": 6,
+        "total_expense_ratio_percent": 1.52,
+        "leverage": 1.25
+      },
+      "distribution": {
+        "as_of": "2026-08-17",
+        "distribution_rate_percent": 41.62,
+        "frequency": "Weekly",
+        "sec_yield_percent": 3.71,
+        "sec_yield_as_of": "2026-07-31",
+        "estimated_roc_percent": 97.90,
+        "gross_expense_ratio_percent": 0.99,
+        "distribution_rate_is_total_return": false
+      },
+      "holdings": {
+        "as_of": "2026-08-19",
+        "published_holding_count": 6,
+        "net_weight_sum_percent": 99.99,
+        "rows": [
+          {"symbol":"TBILL","weight_percent":115.95},
+          {"symbol":"FGXXX","weight_percent":0.15},
+          {"symbol":"2TSLA 260821C00391060","weight_percent":0.05},
+          {"symbol":"Cash&Other","weight_percent":-0.06},
+          {"symbol":"2TSLA 260821C00346760","weight_percent":-1.38},
+          {"symbol":"2TSLA 260821P00391060","weight_percent":-14.72}
+        ]
+      }
+    },
+    {
+      "ticker": "WMTI",
+      "source_url": "https://www.rexshares.com/wmti/",
+      "observation": {
+        "as_of": "2026-08-19",
+        "nav_usd": 21.27,
+        "market_price_usd": 21.22,
+        "premium_discount_percent": -0.23,
+        "fund_assets_usd": 12944200,
+        "shares_outstanding": 610000,
+        "number_of_holdings": 6,
+        "total_expense_ratio_percent": 0.99,
+        "leverage": null
+      },
+      "distribution": {
+        "as_of": "2026-08-17",
+        "distribution_rate_percent": 31.87,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.99,
+        "sec_yield_as_of": "2026-07-31",
+        "estimated_roc_percent": 100.0,
+        "gross_expense_ratio_percent": 0.99,
+        "distribution_rate_is_total_return": false
+      },
+      "holdings": {
+        "as_of": "2026-08-19",
+        "published_holding_count": 6,
+        "net_weight_sum_percent": 100.00,
+        "rows": [
+          {"symbol":"TBILL","weight_percent":105.93},
+          {"symbol":"WMT 260918C00120000","weight_percent":1.98},
+          {"symbol":"FGXXX","weight_percent":0.39},
+          {"symbol":"Cash&Other","weight_percent":0.18},
+          {"symbol":"2WMT 260821C00118000","weight_percent":-0.74},
+          {"symbol":"2WMT 260918P00120000","weight_percent":-7.74}
+        ]
+      }
+    }
+  ]
+}
