@@ -15,6 +15,7 @@ on:
       - 'tests/test_rex_distributions.py'
       - 'tests/test_rex_compare_page.py'
       - '.github/workflows/rex-fund-master.yml'
+      - '.github/workflows/weekly-update.yml'
   push:
     branches: [main]
     paths:
@@ -30,6 +31,7 @@ on:
       - 'tests/test_rex_distributions.py'
       - 'tests/test_rex_compare_page.py'
       - '.github/workflows/rex-fund-master.yml'
+      - '.github/workflows/weekly-update.yml'
   workflow_dispatch:
 
 permissions:
