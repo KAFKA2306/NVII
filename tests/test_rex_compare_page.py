@@ -18,6 +18,14 @@ class RexComparePageTest(unittest.TestCase):
         self.assertNotIn("expected shortfall", html)
         self.assertNotIn("black-scholes", html)
 
+    def test_pages_workflow_packages_compare_and_canonical_data(self):
+        workflow = Path(".github/workflows/weekly-update.yml").read_text(encoding="utf-8")
+        self.assertIn("cp -R compare _site/compare", workflow)
+        self.assertIn("rex-growth-income-active-observations.json", workflow)
+        self.assertIn("rex-growth-income-distributions.json", workflow)
+        self.assertIn("path: ./_site", workflow)
+        self.assertIn("Verify deployed compare page", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
