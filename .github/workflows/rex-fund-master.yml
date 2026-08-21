@@ -5,20 +5,26 @@ on:
     paths:
       - 'data/rex-growth-income-funds.json'
       - 'data/rex-growth-income-active-observations.json'
+      - 'data/rex-growth-income-distributions.json'
       - 'scripts/validate_rex_fund_master.py'
       - 'scripts/validate_rex_active_observations.py'
+      - 'scripts/validate_rex_distributions.py'
       - 'tests/test_rex_fund_master.py'
       - 'tests/test_rex_active_observations.py'
+      - 'tests/test_rex_distributions.py'
       - '.github/workflows/rex-fund-master.yml'
   push:
     branches: [main]
     paths:
       - 'data/rex-growth-income-funds.json'
       - 'data/rex-growth-income-active-observations.json'
+      - 'data/rex-growth-income-distributions.json'
       - 'scripts/validate_rex_fund_master.py'
       - 'scripts/validate_rex_active_observations.py'
+      - 'scripts/validate_rex_distributions.py'
       - 'tests/test_rex_fund_master.py'
       - 'tests/test_rex_active_observations.py'
+      - 'tests/test_rex_distributions.py'
       - '.github/workflows/rex-fund-master.yml'
   workflow_dispatch:
 
@@ -38,12 +44,14 @@ jobs:
         run: |
           python -m py_compile scripts/validate_rex_fund_master.py tests/test_rex_fund_master.py
           python -m py_compile scripts/validate_rex_active_observations.py tests/test_rex_active_observations.py
+          python -m py_compile scripts/validate_rex_distributions.py tests/test_rex_distributions.py
       - name: Run data contract tests
-        run: python -m unittest tests.test_rex_fund_master tests.test_rex_active_observations -v
+        run: python -m unittest tests.test_rex_fund_master tests.test_rex_active_observations tests.test_rex_distributions -v
       - name: Validate repository datasets
         run: |
           python scripts/validate_rex_fund_master.py
           python scripts/validate_rex_active_observations.py
+          python scripts/validate_rex_distributions.py
       - name: Clean runtime caches
         run: find . -type d -name __pycache__ -prune -exec rm -rf {} +
       - name: Require clean checkout
