@@ -1,0 +1,61 @@
+{
+  "schema_version": "rex-growth-income-distributions.v1",
+  "observed_at": "2026-08-21T09:58:37+09:00",
+  "source_policy": "Official REX product pages only. Includes realized distributions with a published per-share amount; future scheduled rows without an amount are excluded.",
+  "funds": [
+    {
+      "ticker": "NVII",
+      "source_url": "https://www.rexshares.com/nvii/",
+      "distributions": [
+        {"declaration_date":"2026-08-17","ex_date":"2026-08-18","record_date":"2026-08-18","payable_date":"2026-08-19","distribution_per_share_usd":0.1992},
+        {"declaration_date":"2026-08-10","ex_date":"2026-08-11","record_date":"2026-08-11","payable_date":"2026-08-12","distribution_per_share_usd":0.2246},
+        {"declaration_date":"2026-08-03","ex_date":"2026-08-04","record_date":"2026-08-04","payable_date":"2026-08-05","distribution_per_share_usd":0.2381},
+        {"declaration_date":"2026-07-27","ex_date":"2026-07-28","record_date":"2026-07-28","payable_date":"2026-07-29","distribution_per_share_usd":0.2288},
+        {"declaration_date":"2026-07-20","ex_date":"2026-07-21","record_date":"2026-07-21","payable_date":"2026-07-22","distribution_per_share_usd":0.2098},
+        {"declaration_date":"2026-07-13","ex_date":"2026-07-14","record_date":"2026-07-14","payable_date":"2026-07-15","distribution_per_share_usd":0.1901},
+        {"declaration_date":"2026-07-06","ex_date":"2026-07-07","record_date":"2026-07-07","payable_date":"2026-07-08","distribution_per_share_usd":0.1857},
+        {"declaration_date":"2026-06-29","ex_date":"2026-06-30","record_date":"2026-06-30","payable_date":"2026-07-01","distribution_per_share_usd":0.2101},
+        {"declaration_date":"2026-06-22","ex_date":"2026-06-23","record_date":"2026-06-23","payable_date":"2026-06-24","distribution_per_share_usd":0.2217},
+        {"declaration_date":"2026-06-15","ex_date":"2026-06-16","record_date":"2026-06-16","payable_date":"2026-06-17","distribution_per_share_usd":0.2707},
+        {"declaration_date":"2026-06-08","ex_date":"2026-06-09","record_date":"2026-06-09","payable_date":"2026-06-10","distribution_per_share_usd":0.2384},
+        {"declaration_date":"2026-06-01","ex_date":"2026-06-02","record_date":"2026-06-02","payable_date":"2026-06-03","distribution_per_share_usd":0.2564}
+      ]
+    },
+    {
+      "ticker": "TSII",
+      "source_url": "https://www.rexshares.com/tsii/",
+      "distributions": [
+        {"declaration_date":"2026-08-17","ex_date":"2026-08-18","record_date":"2026-08-18","payable_date":"2026-08-19","distribution_per_share_usd":0.1023},
+        {"declaration_date":"2026-08-10","ex_date":"2026-08-11","record_date":"2026-08-11","payable_date":"2026-08-12","distribution_per_share_usd":0.1134},
+        {"declaration_date":"2026-08-03","ex_date":"2026-08-04","record_date":"2026-08-04","payable_date":"2026-08-05","distribution_per_share_usd":0.1238},
+        {"declaration_date":"2026-07-27","ex_date":"2026-07-28","record_date":"2026-07-28","payable_date":"2026-07-29","distribution_per_share_usd":0.1308},
+        {"declaration_date":"2026-07-20","ex_date":"2026-07-21","record_date":"2026-07-21","payable_date":"2026-07-22","distribution_per_share_usd":0.1801},
+        {"declaration_date":"2026-07-13","ex_date":"2026-07-14","record_date":"2026-07-14","payable_date":"2026-07-15","distribution_per_share_usd":0.2028},
+        {"declaration_date":"2026-07-06","ex_date":"2026-07-07","record_date":"2026-07-07","payable_date":"2026-07-08","distribution_per_share_usd":0.1734},
+        {"declaration_date":"2026-06-29","ex_date":"2026-06-30","record_date":"2026-06-30","payable_date":"2026-07-01","distribution_per_share_usd":0.1925},
+        {"declaration_date":"2026-06-22","ex_date":"2026-06-23","record_date":"2026-06-23","payable_date":"2026-06-24","distribution_per_share_usd":0.2571},
+        {"declaration_date":"2026-06-15","ex_date":"2026-06-16","record_date":"2026-06-16","payable_date":"2026-06-17","distribution_per_share_usd":0.2316},
+        {"declaration_date":"2026-06-08","ex_date":"2026-06-09","record_date":"2026-06-09","payable_date":"2026-06-10","distribution_per_share_usd":0.1970},
+        {"declaration_date":"2026-06-01","ex_date":"2026-06-02","record_date":"2026-06-02","payable_date":"2026-06-03","distribution_per_share_usd":0.1851}
+      ]
+    },
+    {
+      "ticker": "WMTI",
+      "source_url": "https://www.rexshares.com/wmti/",
+      "distributions": [
+        {"declaration_date":"2026-08-17","ex_date":"2026-08-18","record_date":"2026-08-18","payable_date":"2026-08-19","distribution_per_share_usd":0.1312},
+        {"declaration_date":"2026-08-10","ex_date":"2026-08-11","record_date":"2026-08-11","payable_date":"2026-08-12","distribution_per_share_usd":0.1116},
+        {"declaration_date":"2026-08-03","ex_date":"2026-08-04","record_date":"2026-08-04","payable_date":"2026-08-05","distribution_per_share_usd":0.1517},
+        {"declaration_date":"2026-07-27","ex_date":"2026-07-28","record_date":"2026-07-28","payable_date":"2026-07-29","distribution_per_share_usd":0.0950},
+        {"declaration_date":"2026-07-20","ex_date":"2026-07-21","record_date":"2026-07-21","payable_date":"2026-07-22","distribution_per_share_usd":0.1039},
+        {"declaration_date":"2026-07-13","ex_date":"2026-07-14","record_date":"2026-07-14","payable_date":"2026-07-15","distribution_per_share_usd":0.1321},
+        {"declaration_date":"2026-07-06","ex_date":"2026-07-07","record_date":"2026-07-07","payable_date":"2026-07-08","distribution_per_share_usd":0.1163},
+        {"declaration_date":"2026-06-29","ex_date":"2026-06-30","record_date":"2026-06-30","payable_date":"2026-07-01","distribution_per_share_usd":0.1401},
+        {"declaration_date":"2026-06-22","ex_date":"2026-06-23","record_date":"2026-06-23","payable_date":"2026-06-24","distribution_per_share_usd":0.1120},
+        {"declaration_date":"2026-06-15","ex_date":"2026-06-16","record_date":"2026-06-16","payable_date":"2026-06-17","distribution_per_share_usd":0.1054},
+        {"declaration_date":"2026-06-08","ex_date":"2026-06-09","record_date":"2026-06-09","payable_date":"2026-06-10","distribution_per_share_usd":0.2569},
+        {"declaration_date":"2026-06-01","ex_date":"2026-06-02","record_date":"2026-06-02","payable_date":"2026-06-03","distribution_per_share_usd":0.2633}
+      ]
+    }
+  ]
+}
