@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REX Growth & Income 比較</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;background:#fafafa;color:#171717}h1{margin-bottom:4px}.note{background:#fff4d6;padding:12px;border-radius:8px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}select,button{font:inherit;padding:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid #ddd;border-radius:12px;padding:16px}.metric{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.history{font-variant-numeric:tabular-nums}.source{display:inline-block;margin-top:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h1>REX Growth & Income 比較</h1>
+<p>現行の NVII / TSII / WMTI から2本を比較します。</p>
+<p class="note">Distribution Rate は直近の分配を年率換算した指標で、total return ではありません。公式観測値とモデル出力は混在させません。</p>
+<div class="controls"><select id="left"></select><select id="right"></select><button id="compare">比較する</button></div>
+<div id="result" class="grid"></div>
+<script>
+const money=v=>v==null?'—':`$${Number(v).toFixed(2)}`;const pct=v=>v==null?'—':`${Number(v).toFixed(2)}%`;
+let observations,distributions;
+async function load(){[observations,distributions]=await Promise.all([fetch('../data/rex-growth-income-active-observations.json').then(r=>r.json()),fetch('../data/rex-growth-income-distributions.json').then(r=>r.json())]);const tickers=observations.funds.map(f=>f.ticker);for(const id of ['left','right']){const el=document.getElementById(id);tickers.forEach(t=>el.add(new Option(t,t)));}document.getElementById('right').selectedIndex=1;render();}
+function card(ticker){const f=observations.funds.find(x=>x.ticker===ticker),h=distributions.funds.find(x=>x.ticker===ticker);const o=f.observation,d=f.distribution;const rows=h.distributions.map(x=>`<div class="metric history"><span>${x.declaration_date}</span><strong>${money(x.distribution_per_share_usd)}</strong></div>`).join('');return `<section class="card"><h2>${ticker}</h2><div class="metric"><span>NAV (${o.as_of})</span><strong>${money(o.nav_usd)}</strong></div><div class="metric"><span>Market price</span><strong>${money(o.market_price_usd)}</strong></div><div class="metric"><span>Premium / discount</span><strong>${pct(o.premium_discount_percent)}</strong></div><div class="metric"><span>Distribution Rate (${d.as_of})</span><strong>${pct(d.distribution_rate_percent)}</strong></div><div class="metric"><span>30-Day SEC Yield (${d.sec_yield_as_of})</span><strong>${pct(d.sec_yield_percent)}</strong></div><div class="metric"><span>Estimated ROC</span><strong>${pct(d.estimated_roc_percent)}</strong></div><div class="metric"><span>Total expense ratio</span><strong>${pct(o.total_expense_ratio_percent)}</strong></div><div class="metric"><span>Holdings / net weight</span><strong>${o.number_of_holdings} / ${pct(f.holdings.net_weight_sum_percent)}</strong></div><h3>直近12週の1口当たり分配</h3>${rows}<a class="source" href="${f.source_url}" target="_blank" rel="noopener">REX公式一次情報 ↗</a></section>`;}
+function render(){const a=document.getElementById('left').value,b=document.getElementById('right').value;document.getElementById('result').innerHTML=a===b?'<p>異なる2本を選択してください。</p>':card(a)+card(b);}
+document.getElementById('compare').addEventListener('click',render);load().catch(e=>{document.getElementById('result').textContent='データを読み込めませんでした。';console.error(e)});
+</script>
+</body></html>

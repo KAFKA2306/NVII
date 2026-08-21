@@ -6,12 +6,14 @@ on:
       - 'data/rex-growth-income-funds.json'
       - 'data/rex-growth-income-active-observations.json'
       - 'data/rex-growth-income-distributions.json'
+      - 'compare/**'
       - 'scripts/validate_rex_fund_master.py'
       - 'scripts/validate_rex_active_observations.py'
       - 'scripts/validate_rex_distributions.py'
       - 'tests/test_rex_fund_master.py'
       - 'tests/test_rex_active_observations.py'
       - 'tests/test_rex_distributions.py'
+      - 'tests/test_rex_compare_page.py'
       - '.github/workflows/rex-fund-master.yml'
   push:
     branches: [main]
@@ -19,12 +21,14 @@ on:
       - 'data/rex-growth-income-funds.json'
       - 'data/rex-growth-income-active-observations.json'
       - 'data/rex-growth-income-distributions.json'
+      - 'compare/**'
       - 'scripts/validate_rex_fund_master.py'
       - 'scripts/validate_rex_active_observations.py'
       - 'scripts/validate_rex_distributions.py'
       - 'tests/test_rex_fund_master.py'
       - 'tests/test_rex_active_observations.py'
       - 'tests/test_rex_distributions.py'
+      - 'tests/test_rex_compare_page.py'
       - '.github/workflows/rex-fund-master.yml'
   workflow_dispatch:
 
@@ -45,8 +49,9 @@ jobs:
           python -m py_compile scripts/validate_rex_fund_master.py tests/test_rex_fund_master.py
           python -m py_compile scripts/validate_rex_active_observations.py tests/test_rex_active_observations.py
           python -m py_compile scripts/validate_rex_distributions.py tests/test_rex_distributions.py
-      - name: Run data contract tests
-        run: python -m unittest tests.test_rex_fund_master tests.test_rex_active_observations tests.test_rex_distributions -v
+          python -m py_compile tests/test_rex_compare_page.py
+      - name: Run data and compare-page contract tests
+        run: python -m unittest tests.test_rex_fund_master tests.test_rex_active_observations tests.test_rex_distributions tests.test_rex_compare_page -v
       - name: Validate repository datasets
         run: |
           python scripts/validate_rex_fund_master.py
