@@ -12,6 +12,12 @@ class RexComparePageTest(unittest.TestCase):
         self.assertIn("REX公式一次情報", html)
         self.assertIn("NVII / TSII / WMTI", html)
 
+    def test_compare_page_records_alert_demand_as_github_issue(self):
+        html = Path("compare/index.html").read_text(encoding="utf-8")
+        self.assertIn("週次アラートを希望する", html)
+        self.assertIn("https://github.com/KAFKA2306/NVII/issues/new?", html)
+        self.assertIn("実際に送信された要望だけを記録します", html)
+
     def test_compare_page_does_not_embed_model_outputs(self):
         html = Path("compare/index.html").read_text(encoding="utf-8").lower()
         self.assertNotIn("value at risk", html)
