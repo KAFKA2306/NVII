@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>REX Growth & Income 比較</title>
 <style>
-body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;background:#fafafa;color:#171717}h1{margin-bottom:4px}.note{background:#fff4d6;padding:12px;border-radius:8px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}select,button{font:inherit;padding:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid #ddd;border-radius:12px;padding:16px}.metric{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.history{font-variant-numeric:tabular-nums}.source{display:inline-block;margin-top:12px}@media(max-width:700px){.grid{grid-template-columns:1fr}}
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;background:#fafafa;color:#171717}h1{margin-bottom:4px}.note{background:#fff4d6;padding:12px;border-radius:8px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}select,button{font:inherit;padding:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:white;border:1px solid #ddd;border-radius:12px;padding:16px}.metric{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.history{font-variant-numeric:tabular-nums}.source{display:inline-block;margin-top:12px}.cta{margin-top:24px;background:white;border:1px solid #ddd;border-radius:12px;padding:16px}.cta a{display:inline-block;padding:10px 14px;border:1px solid #171717;border-radius:8px;color:#171717;text-decoration:none;font-weight:600}@media(max-width:700px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -13,6 +13,11 @@ body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:24px;
 <p class="note">Distribution Rate は直近の分配を年率換算した指標で、total return ではありません。公式観測値とモデル出力は混在させません。</p>
 <div class="controls"><select id="left"></select><select id="right"></select><button id="compare">比較する</button></div>
 <div id="result" class="grid"></div>
+<section class="cta" aria-labelledby="alert-demand-heading">
+<h2 id="alert-demand-heading">週次アラートが必要ですか？</h2>
+<p>継続利用需要を推測せず、実際に送信された要望だけを記録します。希望する比較対象や通知内容を GitHub Issue で送ってください。</p>
+<a href="https://github.com/KAFKA2306/NVII/issues/new?title=REX%20Growth%20%26%20Income%20%E9%80%B1%E6%AC%A1%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%E5%B8%8C%E6%9C%9B&amp;body=%E6%AF%94%E8%BC%83%E3%81%97%E3%81%9F%E3%81%84fund%3A%20%0A%E9%80%9A%E7%9F%A5%E3%81%A7%E8%A6%8B%E3%81%9F%E3%81%84%E5%A4%89%E5%8C%96%3A%20%0A%E5%B8%8C%E6%9C%9B%E9%A0%BB%E5%BA%A6%3A%20" target="_blank" rel="noopener">週次アラートを希望する ↗</a>
+</section>
 <script>
 const money=v=>v==null?'—':`$${Number(v).toFixed(2)}`;const pct=v=>v==null?'—':`${Number(v).toFixed(2)}%`;
 let observations,distributions;
