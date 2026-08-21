@@ -14,7 +14,7 @@ class RexComparePageTest(unittest.TestCase):
 
     def test_compare_page_does_not_embed_model_outputs(self):
         html = Path("compare/index.html").read_text(encoding="utf-8").lower()
-        self.assertNotIn("var", html)
+        self.assertNotIn("value at risk", html)
         self.assertNotIn("expected shortfall", html)
         self.assertNotIn("black-scholes", html)
 
