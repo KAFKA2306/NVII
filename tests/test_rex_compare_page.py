@@ -12,6 +12,20 @@ class RexComparePageTest(unittest.TestCase):
         self.assertIn("REX公式一次情報", html)
         self.assertIn("NVII / TSII / WMTI", html)
 
+    def test_compare_page_exposes_observation_context_before_decision(self):
+        html = Path("compare/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="observation-status"', html)
+        self.assertIn("observations.observed_at", html)
+        self.assertIn("現在値ではなく、観測日時点の比較です", html)
+        self.assertIn("観測日時を確認できません。現在値として扱わないでください。", html)
+
+    def test_compare_page_updates_when_selection_changes(self):
+        html = Path("compare/index.html").read_text(encoding="utf-8")
+        self.assertIn("el.addEventListener('change',render)", html)
+        self.assertNotIn('id="compare"', html)
+        self.assertIn('<label for="left">比較1</label>', html)
+        self.assertIn('<label for="right">比較2</label>', html)
+
     def test_compare_page_records_alert_demand_as_github_issue(self):
         html = Path("compare/index.html").read_text(encoding="utf-8")
         self.assertIn("週次アラートを希望する", html)
@@ -31,6 +45,9 @@ class RexComparePageTest(unittest.TestCase):
         self.assertIn("rex-growth-income-distributions.json", workflow)
         self.assertIn("path: ./_site", workflow)
         self.assertIn("Verify deployed compare page", workflow)
+        self.assertIn("- 'compare/**'", workflow)
+        self.assertIn("- 'data/rex-growth-income-active-observations.json'", workflow)
+        self.assertIn("- 'data/rex-growth-income-distributions.json'", workflow)
 
 
 if __name__ == "__main__":
