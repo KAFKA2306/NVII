@@ -12,11 +12,14 @@ class RexComparePageTest(unittest.TestCase):
         self.assertIn("REX公式一次情報", html)
         self.assertIn("NVII / TSII / WMTI", html)
 
-    def test_compare_page_exposes_observation_context_before_decision(self):
+    def test_compare_page_exposes_both_input_observation_times(self):
         html = Path("compare/index.html").read_text(encoding="utf-8")
         self.assertIn('id="observation-status"', html)
         self.assertIn("observations.observed_at", html)
-        self.assertIn("現在値ではなく、観測日時点の比較です", html)
+        self.assertIn("distributions.observed_at", html)
+        self.assertIn("基準値", html)
+        self.assertIn("分配履歴", html)
+        self.assertIn("それぞれの観測日時点の正本を組み合わせた比較です", html)
         self.assertIn("観測日時を確認できません。現在値として扱わないでください。", html)
 
     def test_compare_page_updates_when_selection_changes(self):
@@ -38,11 +41,12 @@ class RexComparePageTest(unittest.TestCase):
         self.assertNotIn("expected shortfall", html)
         self.assertNotIn("black-scholes", html)
 
-    def test_pages_workflow_packages_compare_and_canonical_data(self):
+    def test_pages_workflow_packages_compare_and_validates_pair(self):
         workflow = Path(".github/workflows/weekly-update.yml").read_text(encoding="utf-8")
         self.assertIn("cp -R compare _site/compare", workflow)
         self.assertIn("rex-growth-income-active-observations.json", workflow)
         self.assertIn("rex-growth-income-distributions.json", workflow)
+        self.assertIn("validate_rex_compare_pair.py", workflow)
         self.assertIn("path: ./_site", workflow)
         self.assertIn("Verify deployed compare page", workflow)
         self.assertIn("- 'compare/**'", workflow)
