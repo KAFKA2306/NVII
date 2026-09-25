@@ -1,0 +1,11 @@
+ticker,issuer,instrument_type,underlying_ticker,strategy_type,distribution_frequency,official_url
+NVDA,NVIDIA,UNDERLYING,NVDA,SPOT,,https://investor.nvidia.com/
+NVII,REX Shares,ETF,NVDA,LEVERAGED_GROWTH_INCOME,WEEKLY,https://www.rexshares.com/nvii/
+NVDY,YieldMax,ETF,NVDA,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/nvdy/
+NVIT,YieldMax,ETF,NVDA,PERFORMANCE_DISTRIBUTION_TARGET_25,WEEKLY,https://yieldmaxetfs.com/our-etfs/nvit/
+TSLA,Tesla,UNDERLYING,TSLA,SPOT,,https://ir.tesla.com/
+TSII,REX Shares,ETF,TSLA,LEVERAGED_GROWTH_INCOME,WEEKLY,https://www.rexshares.com/tsii/
+TSLY,YieldMax,ETF,TSLA,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/tsly/
+TEST,YieldMax,ETF,TSLA,PERFORMANCE_DISTRIBUTION_TARGET_25,WEEKLY,https://yieldmaxetfs.com/our-etfs/test/
+WMT,Walmart,UNDERLYING,WMT,SPOT,,https://stock.walmart.com/
+WMTI,REX Shares,ETF,WMT,GROWTH_INCOME,WEEKLY,https://www.rexshares.com/wmti/
