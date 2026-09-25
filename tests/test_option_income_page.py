@@ -28,9 +28,9 @@ class OptionIncomePageTest(unittest.TestCase):
         self.assertIn('id="bars"', html)
         self.assertIn('id="scatter"', html)
         self.assertIn('id="matrix"', html)
-        self.assertIn("row.total_return_percent", html)
-        self.assertIn("row.upside_capture_percent", html)
-        self.assertIn("row.downside_capture_percent", html)
+        self.assertIn("r.total_return_percent", html)
+        self.assertIn("r.upside_capture_percent", html)
+        self.assertIn("r.downside_capture_percent", html)
         self.assertIn("OBSERVED_SNAPSHOT_MARKET_DATA_GAP", html)
         self.assertNotIn("Distribution Rate は total return ではありません", html)
 
