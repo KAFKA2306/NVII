@@ -15,6 +15,8 @@ on:
     paths:
       - 'scripts/**'
       - 'compare/**'
+      - 'option-income/**'
+      - 'data/option-income-comparison.json'
       - 'data/rex-growth-income-active-observations.json'
       - 'data/rex-growth-income-distributions.json'
       - '.github/workflows/**'
@@ -153,6 +155,8 @@ jobs:
         mkdir -p _site/data
         cp -R dashboard/. _site/
         cp -R compare _site/compare
+        cp -R option-income _site/option-income
+        cp data/option-income-comparison.json _site/data/
         cp data/rex-growth-income-active-observations.json _site/data/
         cp data/rex-growth-income-distributions.json _site/data/
         python3 scripts/validate_rex_compare_pair.py \
@@ -163,10 +167,18 @@ jobs:
         from pathlib import Path
         observations = json.loads(Path('_site/data/rex-growth-income-active-observations.json').read_text())
         distributions = json.loads(Path('_site/data/rex-growth-income-distributions.json').read_text())
+        option_income = json.loads(Path('_site/data/option-income-comparison.json').read_text())
         assert {fund['ticker'] for fund in observations['funds']} == {'NVII', 'TSII', 'WMTI'}
         assert {fund['ticker'] for fund in distributions['funds']} == {'NVII', 'TSII', 'WMTI'}
-        assert sum(len(fund['distributions']) for fund in distributions['funds']) >= 36\n        groups = {}\n        for row in option_income['rows']:\n            groups.setdefault(row['underlying_ticker'], set()).add(row['ticker'])\n        assert groups['NVDA'] == {'NVDA', 'NVII', 'NVDY', 'NVIT'}\n        assert groups['TSLA'] == {'TSLA', 'TSII', 'TSLY', 'TEST'}
-        assert Path('_site/compare/index.html').is_file()\n        assert Path('_site/option-income/index.html').is_file()\n        assert Path('_site/data/option-income-comparison.json').is_file()
+        assert sum(len(fund['distributions']) for fund in distributions['funds']) >= 36
+        groups = {}
+        for row in option_income['rows']:
+            groups.setdefault(row['underlying_ticker'], set()).add(row['ticker'])
+        assert groups['NVDA'] == {'NVDA', 'NVII', 'NVDY', 'NVIT'}
+        assert groups['TSLA'] == {'TSLA', 'TSII', 'TSLY', 'TEST'}
+        assert Path('_site/compare/index.html').is_file()
+        assert Path('_site/option-income/index.html').is_file()
+        assert Path('_site/data/option-income-comparison.json').is_file()
         PY
     - name: Upload to GitHub Pages
       uses: actions/upload-pages-artifact@v3
@@ -182,7 +194,9 @@ jobs:
         for attempt in 1 2 3 4 5 6; do
           if curl --fail --silent --show-error --location "${PAGE_URL}compare/" -o /tmp/compare.html && \
              curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-active-observations.json" -o /tmp/observations.json && \
-             curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-distributions.json" -o /tmp/distributions.json; then
+             curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-distributions.json" -o /tmp/distributions.json && \
+             curl --fail --silent --show-error --location "${PAGE_URL}option-income/" -o /tmp/option-income.html && \
+             curl --fail --silent --show-error --location "${PAGE_URL}data/option-income-comparison.json" -o /tmp/option-income.json; then
             break
           fi
           if [ "$attempt" -eq 6 ]; then
@@ -190,17 +204,24 @@ jobs:
           fi
           sleep 10
         done
-        grep -q 'REX Growth & Income 比較' /tmp/compare.html\n        grep -q 'Option Income ETF 比較' /tmp/option-income.html
+        grep -q 'REX Growth & Income 比較' /tmp/compare.html
+        grep -q 'Option Income ETF 比較' /tmp/option-income.html
         python - <<'PY'
         import json
         from pathlib import Path
         observations = json.loads(Path('/tmp/observations.json').read_text())
-        distributions = json.loads(Path('/tmp/distributions.json').read_text())\n        option_income = json.loads(Path('/tmp/option-income.json').read_text())
+        distributions = json.loads(Path('/tmp/distributions.json').read_text())
+        option_income = json.loads(Path('/tmp/option-income.json').read_text())
         assert {fund['ticker'] for fund in observations['funds']} == {'NVII', 'TSII', 'WMTI'}
         assert {fund['ticker'] for fund in distributions['funds']} == {'NVII', 'TSII', 'WMTI'}
         assert sum(len(fund['distributions']) for fund in distributions['funds']) >= 36
+        groups = {}
+        for row in option_income['rows']:
+            groups.setdefault(row['underlying_ticker'], set()).add(row['ticker'])
+        assert groups['NVDA'] == {'NVDA', 'NVII', 'NVDY', 'NVIT'}
+        assert groups['TSLA'] == {'TSLA', 'TSII', 'TSLY', 'TEST'}
         PY
-        echo "Verified ${PAGE_URL}compare/"
+        echo "Verified ${PAGE_URL}compare/ and ${PAGE_URL}option-income/"
 
   notify-failure:
     needs: [update-dashboard, deploy-pages]
