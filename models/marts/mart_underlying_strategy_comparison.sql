@@ -24,13 +24,21 @@ select
     l.expense_ratio_percent,
     l.expense_ratio_basis,
     l.leverage,
+    l.performance_window_start,
+    l.performance_window_end,
+    l.price_observation_count,
+    l.total_return_percent,
+    l.underlying_total_return_percent,
+    l.upside_capture_percent,
+    l.downside_capture_percent,
     l.source_url,
     l.observed_at,
     l.provenance_type,
     case
-        when i.instrument_type = 'UNDERLYING' then 'REFERENCE_INSTRUMENT_NO_OBSERVATION'
+        when i.instrument_type = 'UNDERLYING' then 'REFERENCE_INSTRUMENT'
         when l.ticker is null then 'UNVERIFIED_NO_OBSERVATION'
-        else 'OBSERVED_SNAPSHOT'
+        when l.metric_status = 'OBSERVED_SNAPSHOT_MARKET_DATA_GAP' then 'OBSERVED_SNAPSHOT_MARKET_DATA_GAP'
+        else 'OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE'
     end as comparison_status
 from instruments i
 left join latest l using (ticker)
