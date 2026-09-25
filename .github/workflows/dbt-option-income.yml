@@ -3,6 +3,9 @@ name: Option Income dbt Contract
 on:
   pull_request:
     paths:
+      - 'scripts/export_option_income_comparison.py'
+      - 'data/option-income-comparison.json'
+      - 'option-income/**'
       - 'dbt_project.yml'
       - 'profiles.yml'
       - 'requirements-dbt.txt'
@@ -14,6 +17,9 @@ on:
   push:
     branches: [ main ]
     paths:
+      - 'scripts/export_option_income_comparison.py'
+      - 'data/option-income-comparison.json'
+      - 'option-income/**'
       - 'dbt_project.yml'
       - 'profiles.yml'
       - 'requirements-dbt.txt'
