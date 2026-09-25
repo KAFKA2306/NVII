@@ -32,6 +32,13 @@ def main() -> int:
             expense_ratio_percent,
             expense_ratio_basis,
             leverage,
+            cast(performance_window_start as varchar) as performance_window_start,
+            cast(performance_window_end as varchar) as performance_window_end,
+            price_observation_count,
+            total_return_percent,
+            underlying_total_return_percent,
+            upside_capture_percent,
+            downside_capture_percent,
             source_url,
             provenance_type,
             comparison_status
