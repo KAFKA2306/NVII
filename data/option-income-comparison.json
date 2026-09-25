@@ -19,16 +19,16 @@
       "expense_ratio_percent": null,
       "expense_ratio_basis": null,
       "leverage": null,
-      "source_url": null,
-      "provenance_type": null,
-      "comparison_status": "REFERENCE_INSTRUMENT",
       "performance_window_start": null,
       "performance_window_end": null,
       "price_observation_count": null,
       "total_return_percent": null,
       "underlying_total_return_percent": null,
       "upside_capture_percent": null,
-      "downside_capture_percent": null
+      "downside_capture_percent": null,
+      "source_url": null,
+      "provenance_type": null,
+      "comparison_status": "REFERENCE_INSTRUMENT"
     },
     {
       "underlying_ticker": "NVDA",
@@ -47,16 +47,16 @@
       "expense_ratio_percent": 1.09,
       "expense_ratio_basis": "GROSS",
       "leverage": null,
-      "source_url": "https://yieldmaxetfs.com/our-etfs/nvdy/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE",
       "performance_window_start": "2026-08-03",
       "performance_window_end": "2026-09-24",
       "price_observation_count": 38,
       "total_return_percent": 8.5961,
       "underlying_total_return_percent": 8.806195,
       "upside_capture_percent": 77.597839,
-      "downside_capture_percent": 78.316704
+      "downside_capture_percent": 78.316704,
+      "source_url": "https://yieldmaxetfs.com/our-etfs/nvdy/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE"
     },
     {
       "underlying_ticker": "NVDA",
@@ -75,16 +75,16 @@
       "expense_ratio_percent": 1.49,
       "expense_ratio_basis": "TOTAL",
       "leverage": 1.25,
-      "source_url": "https://www.rexshares.com/nvii/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE",
       "performance_window_start": "2026-08-03",
       "performance_window_end": "2026-09-24",
       "price_observation_count": 38,
       "total_return_percent": 8.883295,
       "underlying_total_return_percent": 8.806195,
       "upside_capture_percent": 101.890388,
-      "downside_capture_percent": 101.531087
+      "downside_capture_percent": 101.531087,
+      "source_url": "https://www.rexshares.com/nvii/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE"
     },
     {
       "underlying_ticker": "NVDA",
@@ -103,16 +103,16 @@
       "expense_ratio_percent": 1.08,
       "expense_ratio_basis": "GROSS",
       "leverage": null,
-      "source_url": "https://yieldmaxetfs.com/our-etfs/nvit/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE",
       "performance_window_start": "2026-08-03",
       "performance_window_end": "2026-09-24",
       "price_observation_count": 38,
       "total_return_percent": 7.440467,
       "underlying_total_return_percent": 8.806195,
       "upside_capture_percent": 68.773093,
-      "downside_capture_percent": 72.074395
+      "downside_capture_percent": 72.074395,
+      "source_url": "https://yieldmaxetfs.com/our-etfs/nvit/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE"
     },
     {
       "underlying_ticker": "TSLA",
@@ -131,16 +131,16 @@
       "expense_ratio_percent": null,
       "expense_ratio_basis": null,
       "leverage": null,
-      "source_url": null,
-      "provenance_type": null,
-      "comparison_status": "REFERENCE_INSTRUMENT",
       "performance_window_start": null,
       "performance_window_end": null,
       "price_observation_count": null,
       "total_return_percent": null,
       "underlying_total_return_percent": null,
       "upside_capture_percent": null,
-      "downside_capture_percent": null
+      "downside_capture_percent": null,
+      "source_url": null,
+      "provenance_type": null,
+      "comparison_status": "REFERENCE_INSTRUMENT"
     },
     {
       "underlying_ticker": "TSLA",
@@ -159,16 +159,16 @@
       "expense_ratio_percent": 1.01,
       "expense_ratio_basis": "GROSS",
       "leverage": null,
-      "source_url": "https://yieldmaxetfs.com/our-etfs/test/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE",
       "performance_window_start": "2026-08-03",
       "performance_window_end": "2026-09-24",
       "price_observation_count": 38,
       "total_return_percent": 10.989067,
       "underlying_total_return_percent": 17.343517,
       "upside_capture_percent": 63.392259,
-      "downside_capture_percent": 72.991081
+      "downside_capture_percent": 72.991081,
+      "source_url": "https://yieldmaxetfs.com/our-etfs/test/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE"
     },
     {
       "underlying_ticker": "TSLA",
@@ -187,16 +187,16 @@
       "expense_ratio_percent": 1.52,
       "expense_ratio_basis": "TOTAL",
       "leverage": 1.25,
-      "source_url": "https://www.rexshares.com/tsii/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP",
       "performance_window_start": null,
       "performance_window_end": null,
       "price_observation_count": null,
       "total_return_percent": null,
       "underlying_total_return_percent": null,
       "upside_capture_percent": null,
-      "downside_capture_percent": null
+      "downside_capture_percent": null,
+      "source_url": "https://www.rexshares.com/tsii/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
     {
       "underlying_ticker": "TSLA",
@@ -215,16 +215,16 @@
       "expense_ratio_percent": 1.07,
       "expense_ratio_basis": "GROSS",
       "leverage": null,
-      "source_url": "https://yieldmaxetfs.com/our-etfs/tsly/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE",
       "performance_window_start": "2026-08-03",
       "performance_window_end": "2026-09-24",
       "price_observation_count": 38,
       "total_return_percent": 12.93588,
       "underlying_total_return_percent": 17.343517,
       "upside_capture_percent": 65.054235,
-      "downside_capture_percent": 69.480126
+      "downside_capture_percent": 69.480126,
+      "source_url": "https://yieldmaxetfs.com/our-etfs/tsly/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_WITH_MARKET_PERFORMANCE"
     },
     {
       "underlying_ticker": "WMT",
@@ -243,16 +243,16 @@
       "expense_ratio_percent": null,
       "expense_ratio_basis": null,
       "leverage": null,
-      "source_url": null,
-      "provenance_type": null,
-      "comparison_status": "REFERENCE_INSTRUMENT",
       "performance_window_start": null,
       "performance_window_end": null,
       "price_observation_count": null,
       "total_return_percent": null,
       "underlying_total_return_percent": null,
       "upside_capture_percent": null,
-      "downside_capture_percent": null
+      "downside_capture_percent": null,
+      "source_url": null,
+      "provenance_type": null,
+      "comparison_status": "REFERENCE_INSTRUMENT"
     },
     {
       "underlying_ticker": "WMT",
@@ -271,16 +271,16 @@
       "expense_ratio_percent": 0.99,
       "expense_ratio_basis": "TOTAL",
       "leverage": null,
-      "source_url": "https://www.rexshares.com/wmti/",
-      "provenance_type": "observed",
-      "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP",
       "performance_window_start": null,
       "performance_window_end": null,
       "price_observation_count": null,
       "total_return_percent": null,
       "underlying_total_return_percent": null,
       "upside_capture_percent": null,
-      "downside_capture_percent": null
+      "downside_capture_percent": null,
+      "source_url": "https://www.rexshares.com/wmti/",
+      "provenance_type": "observed",
+      "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     }
   ]
 }
