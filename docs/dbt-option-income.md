@@ -27,7 +27,7 @@ issuer official observation
 
 ## Provenance rule
 
-Observed issuer values use `provenance_type = observed`. Distribution Rate, SEC Yield, realized distributions and estimated ROC remain separate fields. Return, NAV-decay and capture metrics stay NULL until a comparable point-in-time price/total-return series is ingested. The mart marks that state as `OBSERVED_SNAPSHOT_NO_COMPARABLE_PRICE_SERIES` rather than filling a model estimate.
+Observed issuer values use `provenance_type = observed`. Distribution Rate, SEC Yield, realized distributions and estimated ROC remain separate fields. Total return and up/down capture are calculated from the versioned 2026-08-03 through 2026-09-24 market close/distribution window. NAV decay remains NULL because the repository does not yet hold a comparable daily NAV series. TSII is explicitly marked `OBSERVED_SNAPSHOT_MARKET_DATA_GAP` because the market-data provider resolves the ticker but returned no daily bars for the window; the mart does not substitute market price or another ticker.
 
 ## Adding an issuer
 
