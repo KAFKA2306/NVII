@@ -213,7 +213,7 @@ async function load(){
   [...new Set(payload.rows.map(r=>r.underlying_ticker))].forEach(t=>select.add(new Option(t,t)));
   select.value=[...select.options].some(o=>o.value==='NVDA')?'NVDA':select.options[0]?.value;
   select.addEventListener('change',render);
-  document.getElementById('metric').addEventListener('change',renderBars.bind(null,selectedRows()));
+  document.getElementById('metric').addEventListener('change',()=>renderBars(selectedRows()));
   document.getElementById('footer').textContent=payload.generated_from+' · '+payload.schema_version;
   render();
 }
