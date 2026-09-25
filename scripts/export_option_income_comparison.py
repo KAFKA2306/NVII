@@ -11,6 +11,17 @@ import duckdb
 OUTPUT = Path("data/option-income-comparison.json")
 
 
+def _normalize_numbers(value):
+    """Keep the committed JSON stable when SQL DOUBLE values are integral."""
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    if isinstance(value, list):
+        return [_normalize_numbers(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _normalize_numbers(item) for key, item in value.items()}
+    return value
+
+
 def main() -> int:
     con = duckdb.connect("nvii.duckdb", read_only=True)
     cursor = con.execute(
@@ -56,6 +67,7 @@ def main() -> int:
         "generated_from": "main.mart_underlying_strategy_comparison",
         "rows": rows,
     }
+    payload = _normalize_numbers(payload)
     OUTPUT.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
