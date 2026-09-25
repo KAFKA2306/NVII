@@ -63,4 +63,6 @@ select
     end as performance_status
 from summary s
 left join summary u on u.ticker = s.underlying_ticker
-left join captures c using (ticker, underlying_ticker)
+left join captures c
+  on c.ticker = s.ticker
+ and c.underlying_ticker = s.underlying_ticker
