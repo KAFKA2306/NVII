@@ -13,6 +13,8 @@ on:
       - 'seeds/**'
       - 'tests_dbt/**'
       - 'data/yieldmax-option-income-observations.json'
+      - 'data/market-daily-20260803-20260924.csv'
+      - 'data/market-dividends-20260803-20260924.csv'
       - '.github/workflows/dbt-option-income.yml'
   push:
     branches: [ main ]
@@ -27,6 +29,8 @@ on:
       - 'seeds/**'
       - 'tests_dbt/**'
       - 'data/yieldmax-option-income-observations.json'
+      - 'data/market-daily-20260803-20260924.csv'
+      - 'data/market-dividends-20260803-20260924.csv'
       - '.github/workflows/dbt-option-income.yml'
   workflow_dispatch:
 
