@@ -9,3 +9,19 @@ TSLY,YieldMax,ETF,TSLA,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/ts
 TEST,YieldMax,ETF,TSLA,PERFORMANCE_DISTRIBUTION_TARGET_25,WEEKLY,https://yieldmaxetfs.com/our-etfs/test/
 WMT,Walmart,UNDERLYING,WMT,SPOT,,https://stock.walmart.com/
 WMTI,REX Shares,ETF,WMT,GROWTH_INCOME,WEEKLY,https://www.rexshares.com/wmti/
+AMD,Advanced Micro Devices,UNDERLYING,AMD,SPOT,,https://ir.amd.com/
+AMDY,YieldMax,ETF,AMD,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/amdy/
+TSM,Taiwan Semiconductor Manufacturing,UNDERLYING,TSM,SPOT,,https://investor.tsmc.com/
+TSMY,YieldMax,ETF,TSM,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/tsmy/
+PLTR,Palantir Technologies,UNDERLYING,PLTR,SPOT,,https://investors.palantir.com/
+PLTY,YieldMax,ETF,PLTR,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/plty/
+MSTR,Strategy,UNDERLYING,MSTR,SPOT,,https://www.strategy.com/investor-relations
+MSTY,YieldMax,ETF,MSTR,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/msty/
+COIN,Coinbase,UNDERLYING,COIN,SPOT,,https://investor.coinbase.com/
+CONY,YieldMax,ETF,COIN,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/cony/
+HOOD,Robinhood Markets,UNDERLYING,HOOD,SPOT,,https://investors.robinhood.com/
+HOOY,YieldMax,ETF,HOOD,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/hooy/
+RDDT,Reddit,UNDERLYING,RDDT,SPOT,,https://investor.redditinc.com/
+RDYY,YieldMax,ETF,RDDT,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/rdyy/
+SMCI,Super Micro Computer,UNDERLYING,SMCI,SPOT,,https://ir.supermicro.com/
+SMCY,YieldMax,ETF,SMCI,OPTION_INCOME,WEEKLY,https://yieldmaxetfs.com/our-etfs/smcy/
