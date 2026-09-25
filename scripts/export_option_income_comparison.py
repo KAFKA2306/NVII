@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""Export the dbt comparison mart to the static Pages contract."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import duckdb
+
+OUTPUT = Path("data/option-income-comparison.json")
+
+
+def main() -> int:
+    con = duckdb.connect("nvii.duckdb", read_only=True)
+    cursor = con.execute(
+        """
+        select
+            underlying_ticker,
+            ticker,
+            issuer,
+            instrument_type,
+            strategy_type,
+            distribution_frequency,
+            official_url,
+            cast(observation_date as varchar) as observation_date,
+            nav_usd,
+            market_price_usd,
+            distribution_rate_percent,
+            sec_yield_percent,
+            roc_ratio_percent,
+            expense_ratio_percent,
+            expense_ratio_basis,
+            leverage,
+            source_url,
+            provenance_type,
+            comparison_status
+        from main.mart_underlying_strategy_comparison
+        order by
+            underlying_ticker,
+            case when instrument_type = 'UNDERLYING' then 0 else 1 end,
+            ticker
+        """
+    )
+    columns = [item[0] for item in cursor.description]
+    rows = [dict(zip(columns, row, strict=True)) for row in cursor.fetchall()]
+    payload = {
+        "schema_version": "option-income-comparison.v1",
+        "generated_from": "main.mart_underlying_strategy_comparison",
+        "rows": rows,
+    }
+    OUTPUT.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
