@@ -11,7 +11,7 @@ class OptionIncomeSourcesTest(unittest.TestCase):
         )
         self.assertEqual(payload["schema_version"], "yieldmax-option-income-observations.v1")
         funds = {fund["ticker"]: fund for fund in payload["funds"]}
-        self.assertEqual(set(funds), {"NVDY", "NVIT", "TSLY", "TEST"})
+        self.assertEqual(set(funds), {"NVDY", "NVIT", "TSLY", "TEST", "AMDY", "TSMY", "PLTY", "MSTY", "CONY", "HOOY", "RDYY", "SMCY"})
         for ticker, fund in funds.items():
             self.assertTrue(fund["source_url"].startswith("https://yieldmaxetfs.com/"))
             rows = fund["distributions"]
@@ -30,6 +30,14 @@ class OptionIncomeSourcesTest(unittest.TestCase):
             groups.setdefault(row["underlying_ticker"], set()).add(row["ticker"])
         self.assertEqual(groups["NVDA"], {"NVDA", "NVII", "NVDY", "NVIT"})
         self.assertEqual(groups["TSLA"], {"TSLA", "TSII", "TSLY", "TEST"})
+        self.assertEqual(groups["AMD"], {"AMD", "AMDY"})
+        self.assertEqual(groups["TSM"], {"TSM", "TSMY"})
+        self.assertEqual(groups["PLTR"], {"PLTR", "PLTY"})
+        self.assertEqual(groups["MSTR"], {"MSTR", "MSTY"})
+        self.assertEqual(groups["COIN"], {"COIN", "CONY"})
+        self.assertEqual(groups["HOOD"], {"HOOD", "HOOY"})
+        self.assertEqual(groups["RDDT"], {"RDDT", "RDYY"})
+        self.assertEqual(groups["SMCI"], {"SMCI", "SMCY"})
 
 
 if __name__ == "__main__":

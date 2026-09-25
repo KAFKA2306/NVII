@@ -7,7 +7,23 @@ with expected(underlying_ticker, ticker) as (
       ('TSLA', 'TSLA'),
       ('TSLA', 'TSII'),
       ('TSLA', 'TSLY'),
-      ('TSLA', 'TEST')
+      ('TSLA', 'TEST'),
+      ('AMD', 'AMD'),
+      ('AMD', 'AMDY'),
+      ('TSM', 'TSM'),
+      ('TSM', 'TSMY'),
+      ('PLTR', 'PLTR'),
+      ('PLTR', 'PLTY'),
+      ('MSTR', 'MSTR'),
+      ('MSTR', 'MSTY'),
+      ('COIN', 'COIN'),
+      ('COIN', 'CONY'),
+      ('HOOD', 'HOOD'),
+      ('HOOD', 'HOOY'),
+      ('RDDT', 'RDDT'),
+      ('RDDT', 'RDYY'),
+      ('SMCI', 'SMCI'),
+      ('SMCI', 'SMCY')
 ),
 actual as (
     select underlying_ticker, ticker
