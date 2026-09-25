@@ -93,3 +93,8 @@ logs/.gitkeep
 # Don't ignore specific important files
 !dashboard/index.html
 !logs/weekly_update.log
+# dbt / DuckDB
+nvii.duckdb
+*.duckdb.wal
+target/
+logs/dbt.log
