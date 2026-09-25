@@ -1,0 +1,115 @@
+{
+  "schema_version": "yieldmax-option-income-observations.v1",
+  "observed_at": "2026-09-26",
+  "source_policy": "Official YieldMax fund pages only. Distribution Rate is not total return. ROC is preserved as the issuer's estimate and is not inferred.",
+  "funds": [
+    {
+      "ticker": "NVDY",
+      "underlying_ticker": "NVDA",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/nvdy/",
+      "observation": {
+        "as_of": "2026-09-22",
+        "nav_usd": 12.78,
+        "market_price_usd": 12.77,
+        "premium_discount_percent": -0.04,
+        "fund_assets_usd": 1430000000,
+        "shares_outstanding": 111725000,
+        "gross_expense_ratio_percent": 1.09
+      },
+      "distribution": {
+        "as_of": "2026-09-23",
+        "distribution_rate_percent": 40.51,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.35,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 8.25
+      },
+      "distributions": [
+        {"declaration_date":"2026-09-23","ex_date":"2026-09-24","record_date":"2026-09-24","payable_date":"2026-09-25","distribution_per_share_usd":0.0995,"roc_percent":8.25},
+        {"declaration_date":"2026-09-16","ex_date":"2026-09-17","record_date":"2026-09-17","payable_date":"2026-09-18","distribution_per_share_usd":0.0889,"roc_percent":0.00},
+        {"declaration_date":"2026-09-09","ex_date":"2026-09-10","record_date":"2026-09-10","payable_date":"2026-09-11","distribution_per_share_usd":0.1011,"roc_percent":69.12}
+      ]
+    },
+    {
+      "ticker": "NVIT",
+      "underlying_ticker": "NVDA",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/nvit/",
+      "observation": {
+        "as_of": "2026-09-24",
+        "nav_usd": 50.82,
+        "market_price_usd": 50.82,
+        "premium_discount_percent": 0.01,
+        "fund_assets_usd": 12700000,
+        "shares_outstanding": 250000,
+        "gross_expense_ratio_percent": 1.08
+      },
+      "distribution": {
+        "as_of": "2026-09-21",
+        "distribution_rate_percent": 25.00,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.14,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 88.43
+      },
+      "distributions": [
+        {"declaration_date":"2026-09-21","ex_date":"2026-09-22","record_date":"2026-09-22","payable_date":"2026-09-23","distribution_per_share_usd":0.2431,"roc_percent":88.43},
+        {"declaration_date":"2026-09-14","ex_date":"2026-09-15","record_date":"2026-09-15","payable_date":"2026-09-16","distribution_per_share_usd":0.2401,"roc_percent":0.00},
+        {"declaration_date":"2026-09-08","ex_date":"2026-09-09","record_date":"2026-09-09","payable_date":"2026-09-10","distribution_per_share_usd":0.2486,"roc_percent":86.51}
+      ]
+    },
+    {
+      "ticker": "TSLY",
+      "underlying_ticker": "TSLA",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/tsly/",
+      "observation": {
+        "as_of": "2026-09-21",
+        "nav_usd": 22.79,
+        "market_price_usd": 22.78,
+        "premium_discount_percent": -0.04,
+        "fund_assets_usd": 702560000,
+        "shares_outstanding": 30829965,
+        "gross_expense_ratio_percent": 1.07
+      },
+      "distribution": {
+        "as_of": "2026-09-16",
+        "distribution_rate_percent": 50.25,
+        "frequency": "Weekly",
+        "sec_yield_percent": 3.05,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 0.00
+      },
+      "distributions": [
+        {"declaration_date":"2026-09-16","ex_date":"2026-09-17","record_date":"2026-09-17","payable_date":"2026-09-18","distribution_per_share_usd":0.2127,"roc_percent":0.00},
+        {"declaration_date":"2026-09-09","ex_date":"2026-09-10","record_date":"2026-09-10","payable_date":"2026-09-11","distribution_per_share_usd":0.2153,"roc_percent":100.00},
+        {"declaration_date":"2026-09-02","ex_date":"2026-09-03","record_date":"2026-09-03","payable_date":"2026-09-04","distribution_per_share_usd":0.2062,"roc_percent":36.23}
+      ]
+    },
+    {
+      "ticker": "TEST",
+      "underlying_ticker": "TSLA",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/test/",
+      "observation": {
+        "as_of": "2026-09-18",
+        "nav_usd": 37.08,
+        "market_price_usd": 37.14,
+        "premium_discount_percent": 0.16,
+        "fund_assets_usd": 3710000,
+        "shares_outstanding": 100000,
+        "gross_expense_ratio_percent": 1.01
+      },
+      "distribution": {
+        "as_of": "2026-09-14",
+        "distribution_rate_percent": 25.00,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.71,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 89.31
+      },
+      "distributions": [
+        {"declaration_date":"2026-09-14","ex_date":"2026-09-15","record_date":"2026-09-15","payable_date":"2026-09-16","distribution_per_share_usd":0.1808,"roc_percent":89.31},
+        {"declaration_date":"2026-09-08","ex_date":"2026-09-09","record_date":"2026-09-09","payable_date":"2026-09-10","distribution_per_share_usd":0.1788,"roc_percent":77.02},
+        {"declaration_date":"2026-08-31","ex_date":"2026-09-01","record_date":"2026-09-01","payable_date":"2026-09-02","distribution_per_share_usd":0.1778,"roc_percent":88.86}
+      ]
+    }
+  ]
+}
