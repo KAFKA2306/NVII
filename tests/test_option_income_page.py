@@ -24,6 +24,10 @@ class OptionIncomePageTest(unittest.TestCase):
         self.assertNotIn("rex-growth-income-active-observations.json", html)
         self.assertNotIn("yieldmax-option-income-observations.json", html)
         self.assertIn("total return / upside capture / downside capture", html)
+        self.assertIn("row.total_return_percent", html)
+        self.assertIn("row.upside_capture_percent", html)
+        self.assertIn("row.downside_capture_percent", html)
+        self.assertIn("OBSERVED_SNAPSHOT_MARKET_DATA_GAP", html)
 
     def test_pages_workflow_packages_option_income_surface(self):
         workflow = Path(".github/workflows/weekly-update.yml").read_text(encoding="utf-8")
