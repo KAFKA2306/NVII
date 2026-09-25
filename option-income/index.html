@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Option Income ETF Comparison</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.5}
+    table{border-collapse:collapse;width:100%;margin-top:16px}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:right}
+    th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+    .note{padding:12px;background:#f4f4f4;border-radius:8px}.status{font-size:.9rem;color:#555}
+  </style>
+</head>
+<body>
+  <h1>Option Income ETF 比較</h1>
+  <p class="note">Distribution Rate は total return ではありません。原資産の比較可能な価格系列をまだ正本化していないため、total return / upside capture / downside capture は推測表示しません。</p>
+  <label for="underlying">原資産</label>
+  <select id="underlying"></select>
+  <div id="status" class="status"></div>
+  <table>
+    <thead><tr><th>Ticker</th><th>Issuer / Strategy</th><th>NAV</th><th>Distribution Rate</th><th>SEC Yield</th><th>Estimated ROC</th><th>Total Return</th><th>Underlying TR</th><th>Upside Capture</th><th>Downside Capture</th><th>Expense</th><th>Source</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+<script>
+const money=v=>v==null?'—':`$${Number(v).toFixed(2)}`;
+const pct=v=>v==null?'—':`${Number(v).toFixed(2)}%`;
+let payload;
+function render(){
+  const underlying=document.getElementById('underlying').value;
+  const rows=payload.rows.filter(row=>row.underlying_ticker===underlying);
+  document.getElementById('rows').innerHTML=rows.map(row=>`
+    <tr>
+      <td><strong>${row.ticker}</strong></td>
+      <td>${row.issuer}<br><small>${row.strategy_type}</small></td>
+      <td>${money(row.nav_usd)}</td>
+      <td>${pct(row.distribution_rate_percent)}</td>
+      <td>${pct(row.sec_yield_percent)}</td>
+      <td>${pct(row.roc_ratio_percent)}</td>
+      <td>${pct(row.total_return_percent)}</td>
+      <td>${pct(row.underlying_total_return_percent)}</td>
+      <td>${pct(row.upside_capture_percent)}</td>
+      <td>${pct(row.downside_capture_percent)}</td>
+      <td>${pct(row.expense_ratio_percent)} ${row.expense_ratio_basis||''}</td>
+      <td><a href="${row.source_url||row.official_url}" target="_blank" rel="noopener">official ↗</a></td>
+    </tr>`).join('');
+  const dates=rows.filter(row=>row.observation_date).map(row=>`${row.ticker}: ${row.observation_date}`);
+  const gaps=rows.filter(row=>row.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP').map(row=>row.ticker);
+  const window=rows.find(row=>row.performance_window_start&&row.performance_window_end);
+  const period=window?` / TR期間: ${window.performance_window_start}〜${window.performance_window_end}`:'';
+  const gapText=gaps.length?` / 市場データ欠落: ${gaps.join(', ')}`:'';
+  document.getElementById('status').textContent=(dates.length?`観測日: ${dates.join(' / ')}`:'観測値なし')+period+gapText;
+}
+async function load(){
+  payload=await fetch('../data/option-income-comparison.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+  const underlyings=[...new Set(payload.rows.map(row=>row.underlying_ticker))];
+  const select=document.getElementById('underlying');
+  underlyings.forEach(ticker=>select.add(new Option(ticker,ticker)));
+  select.addEventListener('change',render);
+  render();
+}
+load().catch(error=>{document.getElementById('status').textContent=`読み込み失敗: ${error}`;});
+</script>
+</body>
+</html>

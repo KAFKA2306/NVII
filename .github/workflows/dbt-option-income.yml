@@ -1,0 +1,85 @@
+name: Option Income dbt Contract
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/export_option_income_comparison.py'
+      - 'data/option-income-comparison.json'
+      - 'option-income/**'
+      - 'dbt_project.yml'
+      - 'profiles.yml'
+      - 'requirements-dbt.txt'
+      - 'models/**'
+      - 'seeds/**'
+      - 'tests_dbt/**'
+      - 'data/yieldmax-option-income-observations.json'
+      - 'data/market-daily-20260803-20260924.csv'
+      - 'data/market-dividends-20260803-20260924.csv'
+      - '.github/workflows/dbt-option-income.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/export_option_income_comparison.py'
+      - 'data/option-income-comparison.json'
+      - 'option-income/**'
+      - 'dbt_project.yml'
+      - 'profiles.yml'
+      - 'requirements-dbt.txt'
+      - 'models/**'
+      - 'seeds/**'
+      - 'tests_dbt/**'
+      - 'data/yieldmax-option-income-observations.json'
+      - 'data/market-daily-20260803-20260924.csv'
+      - 'data/market-dividends-20260803-20260924.csv'
+      - '.github/workflows/dbt-option-income.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dbt-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact revision
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-dbt.txt
+      - name: Install dbt DuckDB
+        run: python -m pip install -r requirements-dbt.txt
+      - name: Seed canonical instrument master
+        run: dbt seed --profiles-dir . --full-refresh
+      - name: Build and test canonical marts
+        run: dbt build --profiles-dir .
+      - name: Export static comparison contract
+        run: |
+          python scripts/export_option_income_comparison.py
+          git diff --exit-code -- data/option-income-comparison.json
+      - name: Assert required comparison groups
+        run: |
+          python - <<'PY'
+          import duckdb
+          con = duckdb.connect('nvii.duckdb', read_only=True)
+          rows = con.execute("""
+              select underlying_ticker, list(ticker order by ticker)
+              from main.mart_underlying_strategy_comparison
+              where underlying_ticker in ('NVDA', 'TSLA')
+              group by underlying_ticker
+              order by underlying_ticker
+          """).fetchall()
+          groups = {underlying: set(tickers) for underlying, tickers in rows}
+          assert groups['NVDA'] == {'NVDA', 'NVII', 'NVDY', 'NVIT'}, groups
+          assert groups['TSLA'] == {'TSLA', 'TSII', 'TSLY', 'TEST'}, groups
+          issuers = {
+              row[0]
+              for row in con.execute("""
+                  select distinct issuer
+                  from main.mart_option_income_etf_daily
+              """).fetchall()
+          }
+          assert {'REX Shares', 'YieldMax'} <= issuers, issuers
+          PY

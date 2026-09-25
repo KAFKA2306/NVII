@@ -1,0 +1,8 @@
+nvii_option_income:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: nvii.duckdb
+      schema: main
+      threads: 4
