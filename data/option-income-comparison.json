@@ -55,7 +55,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/amdy/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -112,7 +111,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/cony/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -169,7 +167,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/hooy/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -226,7 +223,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/msty/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -395,7 +391,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/plty/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -452,7 +447,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/rdyy/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -509,7 +503,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/smcy/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
@@ -678,7 +671,6 @@
       "upside_capture_percent": null,
       "downside_capture_percent": null,
       "source_url": "https://yieldmaxetfs.com/our-etfs/tsmy/",
-      "observed_at": "2026-09-26",
       "provenance_type": "observed",
       "comparison_status": "OBSERVED_SNAPSHOT_MARKET_DATA_GAP"
     },
