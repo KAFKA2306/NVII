@@ -9,6 +9,9 @@ distribution_stats as (
         stddev_pop(distribution_per_share_usd) as stddev_distribution_per_share_usd
     from {{ ref('fct_distribution') }}
     group by ticker
+),
+performance as (
+    select * from {{ ref('mart_market_performance_window') }}
 )
 
 select
@@ -40,16 +43,23 @@ select
         else s.stddev_distribution_per_share_usd / s.mean_distribution_per_share_usd
     end as distribution_coefficient_of_variation,
     cast(null as double) as nav_decay_percent,
-    cast(null as double) as total_return_percent,
-    cast(null as double) as underlying_total_return_percent,
-    cast(null as double) as upside_capture_percent,
-    cast(null as double) as downside_capture_percent,
+    p.window_start as performance_window_start,
+    p.window_end as performance_window_end,
+    p.price_observation_count,
+    p.total_return_percent,
+    p.underlying_total_return_percent,
+    p.upside_capture_percent,
+    p.downside_capture_percent,
     cast(null as double) as option_premium_yield_percent,
     o.source_url,
     o.observed_at,
     o.provenance_type,
-    'OBSERVED_SNAPSHOT_NO_COMPARABLE_PRICE_SERIES'::varchar as metric_status
+    case
+        when p.ticker is null then 'OBSERVED_SNAPSHOT_MARKET_DATA_GAP'
+        else p.performance_status
+    end::varchar as metric_status
 from observations o
 inner join {{ ref('dim_instrument') }} d using (ticker)
 left join distribution_stats s using (ticker)
+left join performance p using (ticker, underlying_ticker)
 where d.instrument_type = 'ETF'
