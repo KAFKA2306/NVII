@@ -45,6 +45,10 @@ jobs:
         run: dbt seed --profiles-dir . --full-refresh
       - name: Build and test canonical marts
         run: dbt build --profiles-dir .
+      - name: Export static comparison contract
+        run: |
+          python scripts/export_option_income_comparison.py
+          git diff --exit-code -- data/option-income-comparison.json
       - name: Assert required comparison groups
         run: |
           python - <<'PY'
