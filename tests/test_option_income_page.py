@@ -17,6 +17,14 @@ class OptionIncomePageTest(unittest.TestCase):
             groups.setdefault(row["underlying_ticker"], set()).add(row["ticker"])
         self.assertEqual(groups["NVDA"], {"NVDA", "NVII", "NVDY", "NVIT"})
         self.assertEqual(groups["TSLA"], {"TSLA", "TSII", "TSLY", "TEST"})
+        self.assertEqual(groups["AMD"], {"AMD", "AMDY"})
+        self.assertEqual(groups["TSM"], {"TSM", "TSMY"})
+        self.assertEqual(groups["PLTR"], {"PLTR", "PLTY"})
+        self.assertEqual(groups["MSTR"], {"MSTR", "MSTY"})
+        self.assertEqual(groups["COIN"], {"COIN", "CONY"})
+        self.assertEqual(groups["HOOD"], {"HOOD", "HOOY"})
+        self.assertEqual(groups["RDDT"], {"RDDT", "RDYY"})
+        self.assertEqual(groups["SMCI"], {"SMCI", "SMCY"})
 
     def test_page_reads_only_canonical_comparison_artifact(self):
         html = Path("option-income/index.html").read_text(encoding="utf-8")
