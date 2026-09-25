@@ -25,9 +25,30 @@
         "estimated_roc_percent": 8.25
       },
       "distributions": [
-        {"declaration_date":"2026-09-23","ex_date":"2026-09-24","record_date":"2026-09-24","payable_date":"2026-09-25","distribution_per_share_usd":0.0995,"roc_percent":8.25},
-        {"declaration_date":"2026-09-16","ex_date":"2026-09-17","record_date":"2026-09-17","payable_date":"2026-09-18","distribution_per_share_usd":0.0889,"roc_percent":0.00},
-        {"declaration_date":"2026-09-09","ex_date":"2026-09-10","record_date":"2026-09-10","payable_date":"2026-09-11","distribution_per_share_usd":0.1011,"roc_percent":69.12}
+        {
+          "declaration_date": "2026-09-23",
+          "ex_date": "2026-09-24",
+          "record_date": "2026-09-24",
+          "payable_date": "2026-09-25",
+          "distribution_per_share_usd": 0.0995,
+          "roc_percent": 8.25
+        },
+        {
+          "declaration_date": "2026-09-16",
+          "ex_date": "2026-09-17",
+          "record_date": "2026-09-17",
+          "payable_date": "2026-09-18",
+          "distribution_per_share_usd": 0.0889,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.1011,
+          "roc_percent": 69.12
+        }
       ]
     },
     {
@@ -45,16 +66,37 @@
       },
       "distribution": {
         "as_of": "2026-09-21",
-        "distribution_rate_percent": 25.00,
+        "distribution_rate_percent": 25,
         "frequency": "Weekly",
         "sec_yield_percent": 2.14,
         "sec_yield_as_of": "2026-08-31",
         "estimated_roc_percent": 88.43
       },
       "distributions": [
-        {"declaration_date":"2026-09-21","ex_date":"2026-09-22","record_date":"2026-09-22","payable_date":"2026-09-23","distribution_per_share_usd":0.2431,"roc_percent":88.43},
-        {"declaration_date":"2026-09-14","ex_date":"2026-09-15","record_date":"2026-09-15","payable_date":"2026-09-16","distribution_per_share_usd":0.2401,"roc_percent":0.00},
-        {"declaration_date":"2026-09-08","ex_date":"2026-09-09","record_date":"2026-09-09","payable_date":"2026-09-10","distribution_per_share_usd":0.2486,"roc_percent":86.51}
+        {
+          "declaration_date": "2026-09-21",
+          "ex_date": "2026-09-22",
+          "record_date": "2026-09-22",
+          "payable_date": "2026-09-23",
+          "distribution_per_share_usd": 0.2431,
+          "roc_percent": 88.43
+        },
+        {
+          "declaration_date": "2026-09-14",
+          "ex_date": "2026-09-15",
+          "record_date": "2026-09-15",
+          "payable_date": "2026-09-16",
+          "distribution_per_share_usd": 0.2401,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-09-08",
+          "ex_date": "2026-09-09",
+          "record_date": "2026-09-09",
+          "payable_date": "2026-09-10",
+          "distribution_per_share_usd": 0.2486,
+          "roc_percent": 86.51
+        }
       ]
     },
     {
@@ -76,12 +118,33 @@
         "frequency": "Weekly",
         "sec_yield_percent": 3.05,
         "sec_yield_as_of": "2026-08-31",
-        "estimated_roc_percent": 0.00
+        "estimated_roc_percent": 0
       },
       "distributions": [
-        {"declaration_date":"2026-09-16","ex_date":"2026-09-17","record_date":"2026-09-17","payable_date":"2026-09-18","distribution_per_share_usd":0.2127,"roc_percent":0.00},
-        {"declaration_date":"2026-09-09","ex_date":"2026-09-10","record_date":"2026-09-10","payable_date":"2026-09-11","distribution_per_share_usd":0.2153,"roc_percent":100.00},
-        {"declaration_date":"2026-09-02","ex_date":"2026-09-03","record_date":"2026-09-03","payable_date":"2026-09-04","distribution_per_share_usd":0.2062,"roc_percent":36.23}
+        {
+          "declaration_date": "2026-09-16",
+          "ex_date": "2026-09-17",
+          "record_date": "2026-09-17",
+          "payable_date": "2026-09-18",
+          "distribution_per_share_usd": 0.2127,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.2153,
+          "roc_percent": 100
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.2062,
+          "roc_percent": 36.23
+        }
       ]
     },
     {
@@ -99,16 +162,421 @@
       },
       "distribution": {
         "as_of": "2026-09-14",
-        "distribution_rate_percent": 25.00,
+        "distribution_rate_percent": 25,
         "frequency": "Weekly",
         "sec_yield_percent": 2.71,
         "sec_yield_as_of": "2026-08-31",
         "estimated_roc_percent": 89.31
       },
       "distributions": [
-        {"declaration_date":"2026-09-14","ex_date":"2026-09-15","record_date":"2026-09-15","payable_date":"2026-09-16","distribution_per_share_usd":0.1808,"roc_percent":89.31},
-        {"declaration_date":"2026-09-08","ex_date":"2026-09-09","record_date":"2026-09-09","payable_date":"2026-09-10","distribution_per_share_usd":0.1788,"roc_percent":77.02},
-        {"declaration_date":"2026-08-31","ex_date":"2026-09-01","record_date":"2026-09-01","payable_date":"2026-09-02","distribution_per_share_usd":0.1778,"roc_percent":88.86}
+        {
+          "declaration_date": "2026-09-14",
+          "ex_date": "2026-09-15",
+          "record_date": "2026-09-15",
+          "payable_date": "2026-09-16",
+          "distribution_per_share_usd": 0.1808,
+          "roc_percent": 89.31
+        },
+        {
+          "declaration_date": "2026-09-08",
+          "ex_date": "2026-09-09",
+          "record_date": "2026-09-09",
+          "payable_date": "2026-09-10",
+          "distribution_per_share_usd": 0.1788,
+          "roc_percent": 77.02
+        },
+        {
+          "declaration_date": "2026-08-31",
+          "ex_date": "2026-09-01",
+          "record_date": "2026-09-01",
+          "payable_date": "2026-09-02",
+          "distribution_per_share_usd": 0.1778,
+          "roc_percent": 88.86
+        }
+      ]
+    },
+    {
+      "ticker": "AMDY",
+      "underlying_ticker": "AMD",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/amdy/",
+      "observation": {
+        "as_of": "2026-09-17",
+        "nav_usd": 47.06,
+        "market_price_usd": 47.04,
+        "premium_discount_percent": -0.03,
+        "fund_assets_usd": 428210000,
+        "shares_outstanding": 9099975,
+        "gross_expense_ratio_percent": 1
+      },
+      "distribution": {
+        "as_of": "2026-09-16",
+        "distribution_rate_percent": 45.53,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.4,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 0
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-16",
+          "ex_date": "2026-09-17",
+          "record_date": "2026-09-17",
+          "payable_date": "2026-09-18",
+          "distribution_per_share_usd": 0.3906,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.3763,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.4868,
+          "roc_percent": 77.19
+        }
+      ]
+    },
+    {
+      "ticker": "TSMY",
+      "underlying_ticker": "TSM",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/tsmy/",
+      "observation": {
+        "as_of": "2026-09-08",
+        "nav_usd": 15.59,
+        "market_price_usd": 15.61,
+        "premium_discount_percent": 0.1,
+        "fund_assets_usd": 132940000,
+        "shares_outstanding": 8525000,
+        "gross_expense_ratio_percent": 1.01
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 35.41,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.77,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 3.02
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.1042,
+          "roc_percent": 3.02
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.0865,
+          "roc_percent": 90.9
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.0958,
+          "roc_percent": 16.58
+        }
+      ]
+    },
+    {
+      "ticker": "PLTY",
+      "underlying_ticker": "PLTR",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/plty/",
+      "observation": {
+        "as_of": "2026-09-08",
+        "nav_usd": 34.87,
+        "market_price_usd": 35,
+        "premium_discount_percent": 0.37,
+        "fund_assets_usd": 371370000,
+        "shares_outstanding": 10650000,
+        "gross_expense_ratio_percent": 1.07
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 40.3,
+        "frequency": "Weekly",
+        "sec_yield_percent": 1.97,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 2.83
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.2754,
+          "roc_percent": 2.83
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.7253,
+          "roc_percent": 98.14
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.6424,
+          "roc_percent": 67.32
+        }
+      ]
+    },
+    {
+      "ticker": "MSTY",
+      "underlying_ticker": "MSTR",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/msty/",
+      "observation": {
+        "as_of": "2026-09-09",
+        "nav_usd": 15.47,
+        "market_price_usd": null,
+        "premium_discount_percent": null,
+        "fund_assets_usd": 976500000,
+        "shares_outstanding": null,
+        "gross_expense_ratio_percent": 1.03
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 100.58,
+        "frequency": "Weekly",
+        "sec_yield_percent": 1.74,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 98.85
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.3121,
+          "roc_percent": 98.85
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.2105,
+          "roc_percent": 98.9
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.2836,
+          "roc_percent": 98.54
+        }
+      ]
+    },
+    {
+      "ticker": "CONY",
+      "underlying_ticker": "COIN",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/cony/",
+      "observation": {
+        "as_of": "2026-09-09",
+        "nav_usd": 19.81,
+        "market_price_usd": 19.76,
+        "premium_discount_percent": -0.26,
+        "fund_assets_usd": 346360000,
+        "shares_outstanding": 17482457,
+        "gross_expense_ratio_percent": 1.04
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 85.37,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.55,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 59.26
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.3405,
+          "roc_percent": 59.26
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.2723,
+          "roc_percent": 96.56
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.3533,
+          "roc_percent": 97.02
+        }
+      ]
+    },
+    {
+      "ticker": "HOOY",
+      "underlying_ticker": "HOOD",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/hooy/",
+      "observation": {
+        "as_of": "2026-09-10",
+        "nav_usd": 27.72,
+        "market_price_usd": 27.81,
+        "premium_discount_percent": 0.31,
+        "fund_assets_usd": 119210000,
+        "shares_outstanding": 4300000,
+        "gross_expense_ratio_percent": 0.99
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 100.52,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.1,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 46.18
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.5849,
+          "roc_percent": 46.18
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.362,
+          "roc_percent": 0
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.3894,
+          "roc_percent": 97.18
+        }
+      ]
+    },
+    {
+      "ticker": "RDYY",
+      "underlying_ticker": "RDDT",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/rdyy/",
+      "observation": {
+        "as_of": "2026-09-09",
+        "nav_usd": 14.94,
+        "market_price_usd": 14.98,
+        "premium_discount_percent": 0.27,
+        "fund_assets_usd": 14570000,
+        "shares_outstanding": 975000,
+        "gross_expense_ratio_percent": 1.01
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 55.12,
+        "frequency": "Weekly",
+        "sec_yield_percent": 2.58,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 91.76
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.1652,
+          "roc_percent": 91.76
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.2009,
+          "roc_percent": 37.28
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.2045,
+          "roc_percent": 0
+        }
+      ]
+    },
+    {
+      "ticker": "SMCY",
+      "underlying_ticker": "SMCI",
+      "source_url": "https://yieldmaxetfs.com/our-etfs/smcy/",
+      "observation": {
+        "as_of": "2026-09-09",
+        "nav_usd": 5.38,
+        "market_price_usd": 5.39,
+        "premium_discount_percent": 0.25,
+        "fund_assets_usd": 158480000,
+        "shares_outstanding": 29475000,
+        "gross_expense_ratio_percent": 1.01
+      },
+      "distribution": {
+        "as_of": "2026-09-09",
+        "distribution_rate_percent": 100.9,
+        "frequency": "Weekly",
+        "sec_yield_percent": 1.83,
+        "sec_yield_as_of": "2026-08-31",
+        "estimated_roc_percent": 98.29
+      },
+      "distributions": [
+        {
+          "declaration_date": "2026-09-09",
+          "ex_date": "2026-09-10",
+          "record_date": "2026-09-10",
+          "payable_date": "2026-09-11",
+          "distribution_per_share_usd": 0.105,
+          "roc_percent": 98.29
+        },
+        {
+          "declaration_date": "2026-09-02",
+          "ex_date": "2026-09-03",
+          "record_date": "2026-09-03",
+          "payable_date": "2026-09-04",
+          "distribution_per_share_usd": 0.095,
+          "roc_percent": 18.48
+        },
+        {
+          "declaration_date": "2026-08-26",
+          "ex_date": "2026-08-27",
+          "record_date": "2026-08-27",
+          "payable_date": "2026-08-28",
+          "distribution_per_share_usd": 0.0879,
+          "roc_percent": 0
+        }
       ]
     }
   ]
