@@ -1,0 +1,71 @@
+version: 2
+
+seeds:
+  - name: instrument_master
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: issuer
+        tests: [not_null]
+      - name: instrument_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['ETF', 'UNDERLYING']
+      - name: underlying_ticker
+        tests: [not_null]
+      - name: strategy_type
+        tests: [not_null]
+
+models:
+  - name: dim_instrument
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: underlying_ticker
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_instrument')
+              field: ticker
+
+  - name: fct_distribution
+    columns:
+      - name: distribution_key
+        tests: [not_null, unique]
+      - name: ticker
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_instrument')
+              field: ticker
+      - name: distribution_per_share_usd
+        tests: [not_null]
+
+  - name: mart_option_income_etf_daily
+    columns:
+      - name: snapshot_key
+        tests: [not_null, unique]
+      - name: ticker
+        tests: [not_null]
+      - name: issuer
+        tests: [not_null]
+      - name: underlying_ticker
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_instrument')
+              field: ticker
+      - name: provenance_type
+        tests:
+          - accepted_values:
+              values: ['observed']
+
+  - name: mart_underlying_strategy_comparison
+    columns:
+      - name: comparison_key
+        tests: [not_null, unique]
+      - name: ticker
+        tests: [not_null]
+      - name: underlying_ticker
+        tests: [not_null]
