@@ -3,62 +3,224 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Option Income ETF Comparison</title>
+  <title>Option Income BI</title>
   <style>
-    body{font-family:system-ui,sans-serif;max-width:1100px;margin:0 auto;padding:24px;line-height:1.5}
-    table{border-collapse:collapse;width:100%;margin-top:16px}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:right}
-    th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
-    .note{padding:12px;background:#f4f4f4;border-radius:8px}.status{font-size:.9rem;color:#555}
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111827;background:#f5f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;background:#f5f7fb;color:#111827}
+    .shell{max-width:1440px;margin:auto;padding:20px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+    h1{font-size:22px;margin:0}.sub{font-size:12px;color:#6b7280}
+    .filters{display:flex;gap:10px;flex-wrap:wrap}
+    select{border:1px solid #d1d5db;border-radius:8px;background:white;padding:8px 34px 8px 10px;font-weight:600}
+    .grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}
+    .two{grid-template-columns:1.05fr .95fr;margin-bottom:14px}
+    .card{background:white;border:1px solid #e5e7eb;border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+    .kpi-label{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}.kpi-value{font-size:28px;font-weight:760;margin-top:4px}.kpi-foot{font-size:11px;color:#9ca3af;margin-top:3px}
+    .card h2{font-size:13px;margin:0 0 12px;color:#374151}
+    .bars{display:grid;gap:10px}.bar-row{display:grid;grid-template-columns:64px 1fr 74px;gap:10px;align-items:center;font-size:12px}.bar-track{height:10px;background:#eef2f7;border-radius:99px;overflow:hidden}.bar-fill{height:100%;background:#111827;border-radius:99px}.bar-fill.muted{background:#94a3b8}
+    .scatter-wrap{position:relative;height:310px}.scatter{width:100%;height:100%}.axis{stroke:#d1d5db;stroke-width:1}.gridline{stroke:#eef2f7;stroke-width:1}.dot{fill:#111827;opacity:.85}.dot.ref{fill:#9ca3af}.dot.gap{fill:#f59e0b}.label{font-size:11px;fill:#374151;font-weight:650}.tick{font-size:10px;fill:#9ca3af}
+    .matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.mini{border:1px solid #e5e7eb;border-radius:10px;padding:12px}.mini .ticker{font-weight:750}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.mini-metric span{display:block;font-size:10px;color:#9ca3af}.mini-metric strong{font-size:14px}
+    .status{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.pill{font-size:11px;padding:5px 8px;background:white;border:1px solid #e5e7eb;border-radius:99px;color:#4b5563}.pill.warn{border-color:#fbbf24;color:#92400e;background:#fffbeb}
+    .table-card{overflow:auto}table{border-collapse:collapse;width:100%;min-width:1050px;font-size:12px}th,td{padding:10px 9px;border-bottom:1px solid #eef2f7;text-align:right;white-space:nowrap}th{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.03em;position:sticky;top:0;background:white}th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}.ticker-cell{font-weight:750}.muted{color:#9ca3af}.gap-text{color:#b45309;font-weight:650}
+    footer{font-size:10px;color:#9ca3af;margin-top:10px;text-align:right}
+    @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column}.scatter-wrap{height:260px}}
   </style>
 </head>
 <body>
-  <h1>Option Income ETF 比較</h1>
-  <p class="note">Distribution Rate は total return ではありません。原資産の比較可能な価格系列をまだ正本化していないため、total return / upside capture / downside capture は推測表示しません。</p>
-  <label for="underlying">原資産</label>
-  <select id="underlying"></select>
+<div class="shell">
+  <div class="topbar">
+    <div><h1>Option Income BI</h1><div class="sub">canonical mart / issuer-neutral comparison</div></div>
+    <div class="filters">
+      <select id="underlying" aria-label="Underlying"></select>
+      <select id="metric" aria-label="Bar metric">
+        <option value="total_return_percent">Total Return</option>
+        <option value="distribution_rate_percent">Distribution Rate</option>
+        <option value="roc_ratio_percent">ROC</option>
+        <option value="upside_capture_percent">Upside Capture</option>
+        <option value="downside_capture_percent">Downside Capture</option>
+      </select>
+    </div>
+  </div>
+
   <div id="status" class="status"></div>
-  <table>
-    <thead><tr><th>Ticker</th><th>Issuer / Strategy</th><th>NAV</th><th>Distribution Rate</th><th>SEC Yield</th><th>Estimated ROC</th><th>Total Return</th><th>Underlying TR</th><th>Upside Capture</th><th>Downside Capture</th><th>Expense</th><th>Source</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
+
+  <section class="grid kpis">
+    <div class="card"><div class="kpi-label">Underlying TR</div><div id="kpi-underlying-tr" class="kpi-value">—</div><div id="kpi-window" class="kpi-foot">—</div></div>
+    <div class="card"><div class="kpi-label">ETF count</div><div id="kpi-count" class="kpi-value">—</div><div class="kpi-foot">canonical instruments</div></div>
+    <div class="card"><div class="kpi-label">Max Distribution Rate</div><div id="kpi-distribution" class="kpi-value">—</div><div id="kpi-distribution-ticker" class="kpi-foot">—</div></div>
+    <div class="card"><div class="kpi-label">Market Data Gaps</div><div id="kpi-gaps" class="kpi-value">—</div><div id="kpi-gap-tickers" class="kpi-foot">—</div></div>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2 id="bar-title">Total Return</h2>
+      <div id="bars" class="bars"></div>
+    </div>
+    <div class="card">
+      <h2>Total Return × Distribution Rate</h2>
+      <div class="scatter-wrap"><svg id="scatter" class="scatter" viewBox="0 0 560 310" preserveAspectRatio="none"></svg></div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-bottom:14px">
+    <h2>Strategy Matrix</h2>
+    <div id="matrix" class="matrix"></div>
+  </section>
+
+  <section class="card table-card">
+    <h2>Canonical Comparison</h2>
+    <table>
+      <thead><tr>
+        <th>Ticker</th><th>Issuer / Strategy</th><th>NAV</th><th>Distribution</th><th>SEC Yield</th><th>ROC</th>
+        <th>Total Return</th><th>Underlying TR</th><th>Upside Capture</th><th>Downside Capture</th><th>Expense</th><th>Status</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+  <footer id="footer"></footer>
+</div>
+
 <script>
-const money=v=>v==null?'—':`$${Number(v).toFixed(2)}`;
-const pct=v=>v==null?'—':`${Number(v).toFixed(2)}%`;
+const pct=v=>v==null?'—':Number(v).toFixed(2)+'%';
+const money=v=>v==null?'—':'$'+Number(v).toFixed(2);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let payload;
-function render(){
+
+function selectedRows(){
   const underlying=document.getElementById('underlying').value;
-  const rows=payload.rows.filter(row=>row.underlying_ticker===underlying);
-  document.getElementById('rows').innerHTML=rows.map(row=>`
-    <tr>
-      <td><strong>${row.ticker}</strong></td>
-      <td>${row.issuer}<br><small>${row.strategy_type}</small></td>
-      <td>${money(row.nav_usd)}</td>
-      <td>${pct(row.distribution_rate_percent)}</td>
-      <td>${pct(row.sec_yield_percent)}</td>
-      <td>${pct(row.roc_ratio_percent)}</td>
-      <td>${pct(row.total_return_percent)}</td>
-      <td>${pct(row.underlying_total_return_percent)}</td>
-      <td>${pct(row.upside_capture_percent)}</td>
-      <td>${pct(row.downside_capture_percent)}</td>
-      <td>${pct(row.expense_ratio_percent)} ${row.expense_ratio_basis||''}</td>
-      <td><a href="${row.source_url||row.official_url}" target="_blank" rel="noopener">official ↗</a></td>
-    </tr>`).join('');
-  const dates=rows.filter(row=>row.observation_date).map(row=>`${row.ticker}: ${row.observation_date}`);
-  const gaps=rows.filter(row=>row.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP').map(row=>row.ticker);
-  const window=rows.find(row=>row.performance_window_start&&row.performance_window_end);
-  const period=window?` / TR期間: ${window.performance_window_start}〜${window.performance_window_end}`:'';
-  const gapText=gaps.length?` / 市場データ欠落: ${gaps.join(', ')}`:'';
-  document.getElementById('status').textContent=(dates.length?`観測日: ${dates.join(' / ')}`:'観測値なし')+period+gapText;
+  return payload.rows.filter(row=>row.underlying_ticker===underlying);
 }
+
+function renderKpis(rows){
+  const etfs=rows.filter(r=>r.instrument_type==='ETF');
+  const perf=etfs.find(r=>r.underlying_total_return_percent!=null);
+  const maxDist=etfs.filter(r=>r.distribution_rate_percent!=null).sort((a,b)=>b.distribution_rate_percent-a.distribution_rate_percent)[0];
+  const gaps=etfs.filter(r=>r.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP');
+  document.getElementById('kpi-underlying-tr').textContent=pct(perf?.underlying_total_return_percent);
+  document.getElementById('kpi-window').textContent=perf?perf.performance_window_start+' → '+perf.performance_window_end:'no comparable window';
+  document.getElementById('kpi-count').textContent=etfs.length;
+  document.getElementById('kpi-distribution').textContent=pct(maxDist?.distribution_rate_percent);
+  document.getElementById('kpi-distribution-ticker').textContent=maxDist?.ticker||'—';
+  document.getElementById('kpi-gaps').textContent=gaps.length;
+  document.getElementById('kpi-gap-tickers').textContent=gaps.map(r=>r.ticker).join(', ')||'none';
+}
+
+function renderBars(rows){
+  const metric=document.getElementById('metric').value;
+  const names={
+    total_return_percent:'Total Return',
+    distribution_rate_percent:'Distribution Rate',
+    roc_ratio_percent:'Estimated ROC',
+    upside_capture_percent:'Upside Capture',
+    downside_capture_percent:'Downside Capture'
+  };
+  document.getElementById('bar-title').textContent=names[metric];
+  const etfs=rows.filter(r=>r.instrument_type==='ETF');
+  const vals=etfs.map(r=>Math.abs(Number(r[metric]??0)));
+  const max=Math.max(...vals,1);
+  document.getElementById('bars').innerHTML=etfs.map(r=>{
+    const v=r[metric];
+    const width=v==null?0:Math.min(100,Math.abs(Number(v))/max*100);
+    const muted=v==null?' muted':'';
+    return '<div class="bar-row"><strong>'+esc(r.ticker)+'</strong><div class="bar-track"><div class="bar-fill'+muted+'" style="width:'+width+'%"></div></div><span>'+pct(v)+'</span></div>';
+  }).join('');
+}
+
+function renderScatter(rows){
+  const data=rows.filter(r=>r.instrument_type==='ETF'&&r.total_return_percent!=null&&r.distribution_rate_percent!=null);
+  const svg=document.getElementById('scatter');
+  if(!data.length){svg.innerHTML='<text x="20" y="30" class="tick">no comparable market window</text>';return}
+  const W=560,H=310,pad={l:44,r:24,t:18,b:36};
+  const xs=data.map(d=>Number(d.distribution_rate_percent)),ys=data.map(d=>Number(d.total_return_percent));
+  const xmax=Math.max(...xs,1)*1.12,xmin=Math.min(0,...xs);
+  const ymax=Math.max(...ys,1)*1.15,ymin=Math.min(0,...ys)*1.15;
+  const x=v=>pad.l+(v-xmin)/(xmax-xmin)*(W-pad.l-pad.r);
+  const y=v=>H-pad.b-(v-ymin)/(ymax-ymin)*(H-pad.t-pad.b);
+  let out='';
+  for(let i=0;i<=4;i++){
+    const xv=xmin+(xmax-xmin)*i/4, yv=ymin+(ymax-ymin)*i/4;
+    out+='<line class="gridline" x1="'+x(xv)+'" y1="'+pad.t+'" x2="'+x(xv)+'" y2="'+(H-pad.b)+'"/>';
+    out+='<line class="gridline" x1="'+pad.l+'" y1="'+y(yv)+'" x2="'+(W-pad.r)+'" y2="'+y(yv)+'"/>';
+    out+='<text class="tick" x="'+x(xv)+'" y="'+(H-12)+'" text-anchor="middle">'+xv.toFixed(0)+'%</text>';
+    out+='<text class="tick" x="36" y="'+(y(yv)+3)+'" text-anchor="end">'+yv.toFixed(0)+'%</text>';
+  }
+  out+='<line class="axis" x1="'+pad.l+'" y1="'+(H-pad.b)+'" x2="'+(W-pad.r)+'" y2="'+(H-pad.b)+'"/>';
+  out+='<line class="axis" x1="'+pad.l+'" y1="'+pad.t+'" x2="'+pad.l+'" y2="'+(H-pad.b)+'"/>';
+  data.forEach(d=>{
+    const cx=x(Number(d.distribution_rate_percent)),cy=y(Number(d.total_return_percent));
+    out+='<circle class="dot" cx="'+cx+'" cy="'+cy+'" r="7"><title>'+esc(d.ticker)+' | TR '+pct(d.total_return_percent)+' | Dist '+pct(d.distribution_rate_percent)+'</title></circle>';
+    out+='<text class="label" x="'+(cx+9)+'" y="'+(cy-8)+'">'+esc(d.ticker)+'</text>';
+  });
+  svg.innerHTML=out;
+}
+
+function renderMatrix(rows){
+  const etfs=rows.filter(r=>r.instrument_type==='ETF');
+  document.getElementById('matrix').innerHTML=etfs.map(r=>{
+    const gap=r.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP';
+    return '<div class="mini">'+
+      '<div class="ticker">'+esc(r.ticker)+' <span class="muted">'+esc(r.issuer)+'</span></div>'+
+      '<div class="sub">'+esc(r.strategy_type)+'</div>'+
+      '<div class="mini-grid">'+
+        '<div class="mini-metric"><span>Total Return</span><strong>'+pct(r.total_return_percent)+'</strong></div>'+
+        '<div class="mini-metric"><span>Distribution</span><strong>'+pct(r.distribution_rate_percent)+'</strong></div>'+
+        '<div class="mini-metric"><span>Upside Capture</span><strong>'+pct(r.upside_capture_percent)+'</strong></div>'+
+        '<div class="mini-metric"><span>ROC</span><strong>'+pct(r.roc_ratio_percent)+'</strong></div>'+
+      '</div>'+
+      (gap?'<div class="gap-text" style="margin-top:10px;font-size:11px">MARKET DATA GAP</div>':'')+
+    '</div>';
+  }).join('');
+}
+
+function renderTable(rows){
+  document.getElementById('rows').innerHTML=rows.map(r=>{
+    const gap=r.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP';
+    return '<tr>'+
+      '<td class="ticker-cell">'+esc(r.ticker)+'</td>'+
+      '<td>'+esc(r.issuer)+'<br><span class="muted">'+esc(r.strategy_type)+'</span></td>'+
+      '<td>'+money(r.nav_usd)+'</td>'+
+      '<td>'+pct(r.distribution_rate_percent)+'</td>'+
+      '<td>'+pct(r.sec_yield_percent)+'</td>'+
+      '<td>'+pct(r.roc_ratio_percent)+'</td>'+
+      '<td>'+pct(r.total_return_percent)+'</td>'+
+      '<td>'+pct(r.underlying_total_return_percent)+'</td>'+
+      '<td>'+pct(r.upside_capture_percent)+'</td>'+
+      '<td>'+pct(r.downside_capture_percent)+'</td>'+
+      '<td>'+pct(r.expense_ratio_percent)+'</td>'+
+      '<td class="'+(gap?'gap-text':'muted')+'">'+esc(r.comparison_status)+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+function renderStatus(rows){
+  const gaps=rows.filter(r=>r.comparison_status==='OBSERVED_SNAPSHOT_MARKET_DATA_GAP').map(r=>r.ticker);
+  const obs=[...new Set(rows.map(r=>r.observed_at).filter(Boolean))];
+  const parts=['<span class="pill">Underlying '+esc(rows[0]?.underlying_ticker||'—')+'</span>'];
+  if(obs.length) parts.push('<span class="pill">Observed '+esc(obs.sort().at(-1))+'</span>');
+  if(gaps.length) parts.push('<span class="pill warn">Gap '+esc(gaps.join(', '))+'</span>');
+  document.getElementById('status').innerHTML=parts.join('');
+}
+
+function render(){
+  const rows=selectedRows();
+  renderStatus(rows);renderKpis(rows);renderBars(rows);renderScatter(rows);renderMatrix(rows);renderTable(rows);
+}
+
 async function load(){
   payload=await fetch('../data/option-income-comparison.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
-  const underlyings=[...new Set(payload.rows.map(row=>row.underlying_ticker))];
   const select=document.getElementById('underlying');
-  underlyings.forEach(ticker=>select.add(new Option(ticker,ticker)));
+  [...new Set(payload.rows.map(r=>r.underlying_ticker))].forEach(t=>select.add(new Option(t,t)));
+  select.value=[...select.options].some(o=>o.value==='NVDA')?'NVDA':select.options[0]?.value;
   select.addEventListener('change',render);
+  document.getElementById('metric').addEventListener('change',renderBars.bind(null,selectedRows()));
+  document.getElementById('footer').textContent=payload.generated_from+' · '+payload.schema_version;
   render();
 }
-load().catch(error=>{document.getElementById('status').textContent=`読み込み失敗: ${error}`;});
+
+load().catch(error=>{
+  document.getElementById('status').innerHTML='<span class="pill warn">LOAD ERROR '+esc(error)+'</span>';
+});
 </script>
 </body>
 </html>
