@@ -33,6 +33,10 @@
     <div><h1>Option Income BI</h1><div class="sub">canonical mart / issuer-neutral comparison</div></div>
     <div class="filters">
       <select id="underlying" aria-label="Underlying"></select>
+      <select id="chart-scope" aria-label="Chart scope">
+        <option value="selected">Selected underlying</option>
+        <option value="all">All ETFs</option>
+      </select>
       <select id="metric" aria-label="Bar metric">
         <option value="total_return_percent">Total Return</option>
         <option value="distribution_rate_percent">Distribution Rate</option>
@@ -58,9 +62,14 @@
       <div id="bars" class="bars"></div>
     </div>
     <div class="card">
-      <h2>Total Return × Distribution Rate</h2>
+      <h2 id="scatter-title">Total Return × Distribution Rate</h2>
       <div class="scatter-wrap"><svg id="scatter" class="scatter" viewBox="0 0 560 310" preserveAspectRatio="none"></svg></div>
     </div>
+  </section>
+
+  <section class="card" style="margin-bottom:14px">
+    <h2>Universe Distribution Rate Ranking</h2>
+    <div id="universe-bars" class="bars"></div>
   </section>
 
   <section class="card" style="margin-bottom:14px">
@@ -106,6 +115,24 @@ function renderKpis(rows){
   document.getElementById('kpi-gap-tickers').textContent=gaps.map(r=>r.ticker).join(', ')||'none';
 }
 
+function chartRows(){
+  const scope=document.getElementById('chart-scope').value;
+  return scope==='all'
+    ? payload.rows.filter(r=>r.instrument_type==='ETF')
+    : selectedRows();
+}
+
+function renderUniverseBars(){
+  const etfs=payload.rows
+    .filter(r=>r.instrument_type==='ETF'&&r.distribution_rate_percent!=null)
+    .sort((a,b)=>Number(b.distribution_rate_percent)-Number(a.distribution_rate_percent));
+  const max=Math.max(...etfs.map(r=>Number(r.distribution_rate_percent)),1);
+  document.getElementById('universe-bars').innerHTML=etfs.map(r=>{
+    const width=Math.min(100,Number(r.distribution_rate_percent)/max*100);
+    return '<div class="bar-row"><strong>'+esc(r.ticker)+'</strong><div class="bar-track"><div class="bar-fill" style="width:'+width+'%"></div></div><span>'+pct(r.distribution_rate_percent)+'</span></div>';
+  }).join('');
+}
+
 function renderBars(rows){
   const metric=document.getElementById('metric').value;
   const names={
@@ -115,7 +142,7 @@ function renderBars(rows){
     upside_capture_percent:'Upside Capture',
     downside_capture_percent:'Downside Capture'
   };
-  document.getElementById('bar-title').textContent=names[metric];
+  document.getElementById('bar-title').textContent=(document.getElementById('chart-scope').value==='all'?'All ETFs · ':'')+names[metric];
   const etfs=rows.filter(r=>r.instrument_type==='ETF');
   const vals=etfs.map(r=>Math.abs(Number(r[metric]??0)));
   const max=Math.max(...vals,1);
@@ -128,6 +155,10 @@ function renderBars(rows){
 }
 
 function renderScatter(rows){
+  const scope=document.getElementById('chart-scope').value;
+  document.getElementById('scatter-title').textContent=scope==='all'
+    ? 'All ETFs: Total Return × Distribution Rate'
+    : 'Total Return × Distribution Rate';
   const data=rows.filter(r=>r.instrument_type==='ETF'&&r.total_return_percent!=null&&r.distribution_rate_percent!=null);
   const svg=document.getElementById('scatter');
   if(!data.length){svg.innerHTML='<text x="20" y="30" class="tick">no comparable market window</text>';return}
@@ -204,7 +235,14 @@ function renderStatus(rows){
 
 function render(){
   const rows=selectedRows();
-  renderStatus(rows);renderKpis(rows);renderBars(rows);renderScatter(rows);renderMatrix(rows);renderTable(rows);
+  const charts=chartRows();
+  renderStatus(rows);
+  renderKpis(rows);
+  renderBars(charts);
+  renderScatter(charts);
+  renderUniverseBars();
+  renderMatrix(rows);
+  renderTable(rows);
 }
 
 async function load(){
@@ -213,7 +251,8 @@ async function load(){
   [...new Set(payload.rows.map(r=>r.underlying_ticker))].forEach(t=>select.add(new Option(t,t)));
   select.value=[...select.options].some(o=>o.value==='NVDA')?'NVDA':select.options[0]?.value;
   select.addEventListener('change',render);
-  document.getElementById('metric').addEventListener('change',()=>renderBars(selectedRows()));
+  document.getElementById('chart-scope').addEventListener('change',render);
+  document.getElementById('metric').addEventListener('change',()=>renderBars(chartRows()));
   document.getElementById('footer').textContent=payload.generated_from+' · '+payload.schema_version;
   render();
 }
