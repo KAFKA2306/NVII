@@ -1,0 +1,78 @@
+name: Weekly Dashboard Contract
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/weekly-update.yml'
+      - '.github/workflows/weekly-dashboard-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/weekly-update.yml'
+      - '.github/workflows/weekly-dashboard-contract.yml'
+  workflow_run:
+    workflows: ['NVII Weekly Dashboard Update']
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-analysis-source:
+    if: github.event_name != 'workflow_run'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Compile integrated analysis before execution
+        run: python -m py_compile scripts/unified_rex_system_english.py
+      - name: Verify analyzer can initialize in an isolated output directory
+        run: |
+          python - <<'PY'
+          import tempfile
+          from pathlib import Path
+          from scripts.unified_rex_system_english import UnifiedREXSystemEnglish
+          with tempfile.TemporaryDirectory() as tmp:
+              analyzer = UnifiedREXSystemEnglish(output_dir=tmp)
+              assert Path(analyzer.dashboard_dir).is_dir()
+              assert Path(analyzer.docs_dir).is_dir()
+              assert set(analyzer.rex_family) == {'NVII', 'MSII', 'COII', 'TSII'}
+          PY
+      - name: Repository tests
+        run: python -m pytest -q
+
+  notify-weekly-failure:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Create or reuse failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            const marker = `<!-- weekly-dashboard-run:${run.id} -->`;
+            const title = `NVII Dashboard Update Failed - ${run.run_started_at.slice(0, 10)}`;
+            const body = `${marker}\nWorkflow run #${run.run_number} failed. Check ${run.html_url}.`;
+            const {data: existing} = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+            if (!existing.some(issue => issue.body?.includes(marker))) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body
+              });
+            }
