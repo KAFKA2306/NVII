@@ -29,7 +29,8 @@ jobs:
         with:
           python-version: '3.10'
           cache: pip
-      - run: pip install -r requirements.txt
+      - name: Install runtime and test dependencies
+        run: pip install -r requirements.txt pytest
       - name: Compile integrated analysis before execution
         run: python -m py_compile scripts/unified_rex_system_english.py
       - name: Verify analyzer can initialize in an isolated output directory
