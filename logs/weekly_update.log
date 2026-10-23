@@ -1,0 +1,21 @@
+2026-10-23 06:07:25,009 - INFO - 🚀 Starting NVII Weekly Update Process
+2026-10-23 06:07:25,010 - INFO - 📅 Update Date: 2026-10-23 06:07:25
+2026-10-23 06:07:25,010 - INFO - 🔄 Updating NVII vs NVDA returns comparison...
+2026-10-23 06:07:29,404 - INFO - ✅ Updating NVII vs NVDA returns comparison completed successfully
+2026-10-23 06:07:29,404 - INFO - 🔄 Generating NVII dashboard...
+2026-10-23 06:07:31,850 - INFO - ✅ Generating NVII dashboard completed successfully
+2026-10-23 06:07:31,850 - INFO - 🔄 Running advanced option analysis...
+2026-10-23 06:07:32,667 - INFO - ✅ Running advanced option analysis completed successfully
+2026-10-23 06:07:32,667 - INFO - 🔄 Running portfolio simulation...
+2026-10-23 06:08:49,286 - INFO - ✅ Running portfolio simulation completed successfully
+2026-10-23 06:08:49,286 - INFO - 🔍 Checking data quality...
+2026-10-23 06:08:49,286 - INFO - ✅ Dashboard HTML: OK (390,489 bytes)
+2026-10-23 06:08:49,287 - INFO - ✅ Returns Analysis: OK (1,324 bytes)
+2026-10-23 06:08:49,287 - INFO - ✅ Summary CSV: OK (693 bytes)
+2026-10-23 06:08:49,287 - INFO - ✅ Daily Data CSV: OK (67,250 bytes)
+2026-10-23 06:08:49,287 - INFO - ✅ Performance Chart: OK (949,829 bytes)
+2026-10-23 06:08:49,287 - INFO - 📋 Generating update summary...
+2026-10-23 06:08:49,287 - INFO - ✅ Update summary saved to /home/runner/work/NVII/NVII/WEEKLY_UPDATE_SUMMARY.md
+2026-10-23 06:08:49,287 - INFO - 🎉 Weekly update completed successfully! (4/4 tasks)
+2026-10-23 06:08:49,287 - INFO - 📂 Check the dashboard/ directory for the updated dashboard
+2026-10-23 06:08:49,287 - INFO - 📊 Review WEEKLY_UPDATE_SUMMARY.md for detailed results
