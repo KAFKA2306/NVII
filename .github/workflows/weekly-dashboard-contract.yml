@@ -48,6 +48,22 @@ jobs:
           repo_root = Path.cwd().resolve()
           assert Path(UnifiedREXSystemEnglish().output_dir).resolve() == repo_root
           assert Path(WeeklyUpdater().project_root).resolve() == repo_root
+          from scripts.dashboard_generator import NVIIDashboardGenerator
+          import scripts.total_returns_comparison as returns_module
+          assert Path(NVIIDashboardGenerator().output_dir).resolve() == repo_root / 'dashboard'
+          assert returns_module.DOCS_DIR.resolve() == repo_root / 'docs'
+          with tempfile.TemporaryDirectory() as tmp:
+              original_docs_dir = returns_module.DOCS_DIR
+              try:
+                  returns_module.DOCS_DIR = Path(tmp)
+                  comparator = returns_module.TotalReturnsComparator()
+                  comparator.comparison_results = {'NVII': {'total_return': 0.1}}
+                  outputs = comparator.export_to_csv()
+                  assert len(outputs) == 1
+                  assert Path(outputs[0]).parent == Path(tmp)
+                  assert Path(outputs[0]).is_file()
+              finally:
+                  returns_module.DOCS_DIR = original_docs_dir
           PY
       - name: Repository tests
         run: python -m pytest -q
