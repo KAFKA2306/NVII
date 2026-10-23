@@ -66,7 +66,6 @@ class UnifiedREXSystemEnglish:
                 'description': 'Core AI revolution leader and semiconductor champion',
                 'color': '#1f77b4',
                 'underlying_color': '#87CEEB',
-                'active': True
             },
             'MSII': {
                 'name': 'REX MSTR Growth & Income ETF', 
@@ -77,7 +76,6 @@ class UnifiedREXSystemEnglish:
                 'description': 'Bitcoin proxy and business intelligence leader',
                 'color': '#ff7f0e',
                 'underlying_color': '#FFD700',
-                'active': True
             },
             'COII': {
                 'name': 'REX COIN Growth & Income ETF',
@@ -88,7 +86,6 @@ class UnifiedREXSystemEnglish:
                 'description': 'Leading cryptocurrency trading platform',
                 'color': '#2ca02c',
                 'underlying_color': '#90EE90',
-                'active': True
             },
             'TSII': {
                 'name': 'REX TSLA Growth & Income ETF',
@@ -99,11 +96,21 @@ class UnifiedREXSystemEnglish:
                 'description': 'EV revolution leader and autonomous technology pioneer',
                 'color': '#d62728',
                 'underlying_color': '#FFA07A',
-                'active': True
             }
         }
         
         # REX Strategy Configuration
+        # Active instruments are determined by the canonical issuer-backed fund master.
+        master_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'rex-growth-income-funds.json')
+        with open(master_path, encoding='utf-8') as master_file:
+            fund_master = json.load(master_file)
+        statuses = {fund['ticker']: fund['lifecycle_status'] for fund in fund_master['funds']}
+        for ticker, config in self.rex_family.items():
+            status = statuses.get(ticker)
+            if status not in {'ACTIVE', 'LIQUIDATED'}:
+                raise ValueError(f'Missing or invalid lifecycle status for {ticker}')
+            config['active'] = status == 'ACTIVE'
+
         self.strategy_config = {
             'target_leverage': 1.25,
             'leverage_range': (1.05, 1.50),
