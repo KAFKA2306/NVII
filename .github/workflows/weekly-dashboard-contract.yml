@@ -44,6 +44,10 @@ jobs:
               assert Path(analyzer.dashboard_dir).is_dir()
               assert Path(analyzer.docs_dir).is_dir()
               assert set(analyzer.rex_family) == {'NVII', 'MSII', 'COII', 'TSII'}
+          from scripts.weekly_update import WeeklyUpdater
+          repo_root = Path.cwd().resolve()
+          assert Path(UnifiedREXSystemEnglish().output_dir).resolve() == repo_root
+          assert Path(WeeklyUpdater().project_root).resolve() == repo_root
           PY
       - name: Repository tests
         run: python -m pytest -q

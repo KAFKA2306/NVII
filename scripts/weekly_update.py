@@ -12,11 +12,17 @@ import sys
 import subprocess
 from datetime import datetime
 import logging
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+LOG_DIR = PROJECT_ROOT / 'logs'
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('/home/kafka/projects/NVII/logs/weekly_update.log'),
+        logging.FileHandler(str(LOG_DIR / 'weekly_update.log')),
         logging.StreamHandler()
     ]
 )
@@ -26,7 +32,7 @@ class WeeklyUpdater:
     Orchestrates weekly updates for the NVII project
     """
     def __init__(self):
-        self.project_root = '/home/kafka/projects/NVII'
+        self.project_root = str(PROJECT_ROOT)
         self.scripts_dir = os.path.join(self.project_root, 'scripts')
         self.docs_dir = os.path.join(self.project_root, 'docs')
         self.dashboard_dir = os.path.join(self.project_root, 'dashboard')
@@ -194,7 +200,7 @@ def main():
         print(f"🌐 Dashboard: file://{os.path.abspath(dashboard_path)}")
     else:
         print("\n❌ Update had issues. Check the logs for details.")
-        print("📝 Log file: /home/kafka/projects/NVII/logs/weekly_update.log")
+        print(f"📝 Log file: {LOG_DIR / 'weekly_update.log'}")
     return success
 if __name__ == "__main__":
     main()
