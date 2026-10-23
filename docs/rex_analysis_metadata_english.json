@@ -1,5 +1,5 @@
 {
-  "analysis_timestamp": "2026-10-23T06:12:32.451727",
+  "analysis_timestamp": "2026-10-23T09:11:01.554030",
   "etf_count": 2,
   "data_period": "6mo",
   "rex_family_config": {
@@ -23,7 +23,7 @@
       "description": "Bitcoin proxy and business intelligence leader",
       "color": "#ff7f0e",
       "underlying_color": "#FFD700",
-      "active": true
+      "active": false
     },
     "COII": {
       "name": "REX COIN Growth & Income ETF",
@@ -34,7 +34,7 @@
       "description": "Leading cryptocurrency trading platform",
       "color": "#2ca02c",
       "underlying_color": "#90EE90",
-      "active": true
+      "active": false
     },
     "TSII": {
       "name": "REX TSLA Growth & Income ETF",
