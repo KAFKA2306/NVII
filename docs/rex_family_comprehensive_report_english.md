@@ -1,6 +1,6 @@
 # REX Growth & Income ETF Family - Comprehensive Analysis Report
 
-**Generated:** October 23, 2026 at 06:07:24
+**Generated:** October 23, 2026 at 06:12:32
 
 ## Executive Summary
 
@@ -18,41 +18,6 @@ This analysis compares REX ETFs directly with their underlying assets, including
 - **Best Risk-Adjusted Return:** NVII (Sharpe Ratio: 2.169)
 
 ## Individual ETF Analysis vs Underlying Assets
-
-### TSII - REX TSLA Growth & Income ETF
-
-**Sector:** Electric Vehicles/Autonomous  
-**Underlying Asset:** TSLA (Tesla Inc)  
-**Investment Theme:** EV revolution leader and autonomous technology pioneer
-
-**REX ETF Performance:**
-- Current Price: $13.38
-- Total Return (incl. dividends): 35.10%
-- Annualized Return: 81.66%
-- Dividend Yield: 62.84%
-- Volatility: 51.30%
-- Sharpe Ratio: 1.504
-- Maximum Drawdown: -29.40%
-- Estimated Leverage: 1.06x
-- Excess Return vs Underlying: +34.87%
-
-**Dividend Distribution:**
-- Weekly Dividend Payments: 26
-- Average Weekly Dividend: $0.165
-- Dividend Consistency Score: 65.8%
-
-**Underlying Asset Performance (TSLA):**
-- Total Return (incl. dividends): 0.23%
-- Annualized Return: 0.46%
-- Dividend Yield: 0.00%
-- Volatility: 48.46%
-- Sharpe Ratio: -0.083
-- Maximum Drawdown: -33.00%
-
-**REX Strategy Value-Add:**
-- Income Enhancement: +62.8% yield advantage
-- Risk Management: Lower drawdown profile
-- Total Return Premium: +34.9% excess return
 
 ### NVII - REX NVDA Growth & Income ETF
 
@@ -88,6 +53,41 @@ This analysis compares REX ETFs directly with their underlying assets, including
 - Income Enhancement: +54.4% yield advantage
 - Risk Management: Lower drawdown profile
 - Total Return Premium: +32.6% excess return
+
+### TSII - REX TSLA Growth & Income ETF
+
+**Sector:** Electric Vehicles/Autonomous  
+**Underlying Asset:** TSLA (Tesla Inc)  
+**Investment Theme:** EV revolution leader and autonomous technology pioneer
+
+**REX ETF Performance:**
+- Current Price: $13.38
+- Total Return (incl. dividends): 35.10%
+- Annualized Return: 81.66%
+- Dividend Yield: 62.84%
+- Volatility: 51.30%
+- Sharpe Ratio: 1.504
+- Maximum Drawdown: -29.40%
+- Estimated Leverage: 1.06x
+- Excess Return vs Underlying: +34.87%
+
+**Dividend Distribution:**
+- Weekly Dividend Payments: 26
+- Average Weekly Dividend: $0.165
+- Dividend Consistency Score: 65.8%
+
+**Underlying Asset Performance (TSLA):**
+- Total Return (incl. dividends): 0.23%
+- Annualized Return: 0.46%
+- Dividend Yield: 0.00%
+- Volatility: 48.46%
+- Sharpe Ratio: -0.083
+- Maximum Drawdown: -33.00%
+
+**REX Strategy Value-Add:**
+- Income Enhancement: +62.8% yield advantage
+- Risk Management: Lower drawdown profile
+- Total Return Premium: +34.9% excess return
 
 
 ## REX Strategy Framework
