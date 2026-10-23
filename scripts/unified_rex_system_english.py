@@ -38,13 +38,15 @@ class UnifiedREXSystemEnglish:
     Unified REX Analysis System - Complete English implementation with ETF vs Underlying comparisons
     """
     
-    def __init__(self, output_dir='/home/kafka/projects/NVII'):
+    def __init__(self, output_dir=None):
         """
         Initialize the unified REX analysis system
         
         Args:
             output_dir (str): Output directory path
         """
+        if output_dir is None:
+            output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.output_dir = output_dir
         self.dashboard_dir = os.path.join(output_dir, 'rex_dashboard') 
         self.docs_dir = os.path.join(output_dir, 'docs')
