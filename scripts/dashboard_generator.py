@@ -26,12 +26,14 @@ class NVIIDashboardGenerator:
     """
     Comprehensive dashboard generator for NVII project
     """
-    def __init__(self, output_dir='/home/kafka/projects/NVII/dashboard'):
+    def __init__(self, output_dir=None):
         """
         Initialize dashboard generator
         Args:
             output_dir (str): Directory to output dashboard files
         """
+        if output_dir is None:
+            output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'dashboard'))
         self.output_dir = output_dir
         self.data = {}
         self.alerts = []
