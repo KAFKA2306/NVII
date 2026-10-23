@@ -8,6 +8,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+from pathlib import Path
+
+DOCS_DIR = Path(__file__).resolve().parent.parent / 'docs'
+DOCS_DIR.mkdir(parents=True, exist_ok=True)
 import warnings
 warnings.filterwarnings('ignore')
 try:
@@ -174,7 +178,7 @@ class TotalReturnsComparator:
                 row.update(results)
                 summary_data.append(row)
             summary_df = pd.DataFrame(summary_data)
-            summary_path = '/home/kafka/projects/NVII/docs/nvii_nvda_summary_stats.csv'
+            summary_path = DOCS_DIR / 'nvii_nvda_summary_stats.csv'
             summary_df.to_csv(summary_path, index=False)
             csv_files.append(summary_path)
         if self.nvii_data is not None and self.nvda_data is not None:
@@ -194,12 +198,12 @@ class TotalReturnsComparator:
                 combined_data['NVDA_Daily_Return'] = nvda_aligned['Total_Return']
                 combined_data['NVDA_Cumulative_Return'] = nvda_aligned['Cumulative_Total_Return']
                 combined_data['NVII_vs_NVDA_Excess_Return'] = combined_data['NVII_Daily_Return'] - combined_data['NVDA_Daily_Return']
-                daily_path = '/home/kafka/projects/NVII/docs/nvii_nvda_daily_data.csv'
+                daily_path = DOCS_DIR / 'nvii_nvda_daily_data.csv'
                 combined_data.to_csv(daily_path)
                 csv_files.append(daily_path)
         for ticker, data in [("NVII", self.nvii_data), ("NVDA", self.nvda_data)]:
             if data is not None and not data.empty:
-                ticker_path = f'/home/kafka/projects/NVII/docs/{ticker.lower()}_detailed_data.csv'
+                ticker_path = DOCS_DIR / f'{ticker.lower()}_detailed_data.csv'
                 data.to_csv(ticker_path)
                 csv_files.append(ticker_path)
         return csv_files
@@ -295,13 +299,13 @@ def main():
         comparator.fetch_data()
         results = comparator.calculate_total_returns()
         analysis_text = comparator.generate_comparison_analysis()
-        output_path = '/home/kafka/projects/NVII/docs/nvii_nvda_returns_comparison.md'
+        output_path = DOCS_DIR / 'nvii_nvda_returns_comparison.md'
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(analysis_text)
         print(f"Analysis saved to: {output_path}")
         plt_obj = comparator.create_visualization()
         if plt_obj:
-            chart_path = '/home/kafka/projects/NVII/docs/nvii_nvda_performance_chart.png'
+            chart_path = DOCS_DIR / 'nvii_nvda_performance_chart.png'
             plt_obj.savefig(chart_path, dpi=300, bbox_inches='tight')
             print(f"Chart saved to: {chart_path}")
         csv_files = comparator.export_to_csv()
