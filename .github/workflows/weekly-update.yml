@@ -50,7 +50,6 @@ jobs:
     - name: Create required directories
       run: |
         mkdir -p logs dashboard docs
-        chmod 755 scripts/*.py
     - name: Check market hours (weekdays only)
       id: market_check
       run: |
@@ -104,7 +103,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A
+        git add -A -- dashboard/ docs/ WEEKLY_UPDATE_SUMMARY.md
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
@@ -156,6 +155,7 @@ jobs:
         cp -R dashboard/. _site/
         cp -R compare _site/compare
         cp -R option-income _site/option-income
+        grep -q '<title>Option Income BI</title>' _site/option-income/index.html
         cp data/option-income-comparison.json _site/data/
         cp data/rex-growth-income-active-observations.json _site/data/
         cp data/rex-growth-income-distributions.json _site/data/
@@ -205,7 +205,7 @@ jobs:
           sleep 10
         done
         grep -q 'REX Growth & Income 比較' /tmp/compare.html
-        grep -q 'Option Income ETF 比較' /tmp/option-income.html
+        grep -q '<title>Option Income BI</title>' /tmp/option-income.html
         python - <<'PY'
         import json
         from pathlib import Path
