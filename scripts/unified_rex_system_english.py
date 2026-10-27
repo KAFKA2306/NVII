@@ -201,6 +201,27 @@ class UnifiedREXSystemEnglish:
                 except Exception as e:
                     print(f"  ❌ {task['symbol']}: {str(e)}")
         
+        # yfinance uses a shared SQLite cache. Retry missing histories only
+        # after parallel workers exit, avoiding concurrent cache lock contention.
+        missing_symbols = []
+        for task in fetch_tasks:
+            parent = task.get('etf_parent', task['symbol'])
+            field = 'etf_data' if task['type'] == 'etf' else 'underlying_data'
+            cached = self.raw_data.get(parent, {}).get(field, pd.DataFrame())
+            if cached.empty:
+                recovered = self._fetch_single_symbol(task['symbol'], period)
+                if recovered.empty:
+                    missing_symbols.append(task['symbol'])
+                else:
+                    self.raw_data.setdefault(parent, {})[field] = recovered
+                    print(f"  🔁 {task['symbol']}: recovered {len(recovered)} trading days on serial retry")
+
+        if missing_symbols:
+            raise RuntimeError(
+                "Incomplete REX price history after serial retry: "
+                + ", ".join(sorted(missing_symbols))
+            )
+
         print(f"📊 Data fetch completed: {len(self.raw_data)} ETF pairs")
         return self.raw_data
     
@@ -539,9 +560,15 @@ class UnifiedREXSystemEnglish:
         etf_data = self.comparative_df[self.comparative_df['Type'] == 'REX ETF'].copy()
         underlying_data = self.comparative_df[self.comparative_df['Type'] == 'Underlying'].copy()
         
-        # Color mapping
+        # Map each available underlying to its parent ETF position. Missing
+        # underlying history must never shift labels or misalign plot colors.
+        etf_positions = {symbol: index for index, symbol in enumerate(etf_data['Underlying'])}
+        underlying_positions = [etf_positions[symbol] for symbol in underlying_data['Symbol']]
         etf_colors = [self.rex_family[etf]['color'] for etf in etf_data['Symbol']]
-        underlying_colors = [self.rex_family[etf]['underlying_color'] for etf in etf_data['Symbol']]
+        underlying_colors = [
+            self.rex_family[etf_data.iloc[pos]['Symbol']]['underlying_color']
+            for pos in underlying_positions
+        ]
         
         # Row 1: Total Return Comparisons
         # 1. ETF Total Returns
@@ -560,7 +587,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Total_Return']*100, width, 
                       color=etf_colors, alpha=0.8, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Total_Return']*100, width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Total_Return']*100, width,
                           color=underlying_colors, alpha=0.8, label='Underlying Asset')
         ax.set_title('REX ETF vs Underlying Total Returns', fontweight='bold', fontsize=12)
         ax.set_ylabel('Total Return (%)')
@@ -583,7 +610,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Dividend_Yield']*100, width, 
                       color=etf_colors, alpha=0.8, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Dividend_Yield']*100, width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Dividend_Yield']*100, width,
                           color=underlying_colors, alpha=0.8, label='Underlying Asset')
         ax.set_title('Dividend Yields: REX ETF vs Underlying', fontweight='bold', fontsize=12)
         ax.set_ylabel('Annual Dividend Yield (%)')
@@ -598,7 +625,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Sharpe_Ratio'], width, 
                       color=etf_colors, alpha=0.8, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Sharpe_Ratio'], width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Sharpe_Ratio'], width,
                           color=underlying_colors, alpha=0.8, label='Underlying Asset')
         ax.set_title('Risk-Adjusted Returns (Sharpe Ratio)', fontweight='bold', fontsize=12)
         ax.set_ylabel('Sharpe Ratio')
@@ -612,7 +639,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Volatility']*100, width, 
                       color=etf_colors, alpha=0.8, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Volatility']*100, width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Volatility']*100, width,
                           color=underlying_colors, alpha=0.8, label='Underlying Asset')
         ax.set_title('Annualized Volatility Comparison', fontweight='bold', fontsize=12)
         ax.set_ylabel('Volatility (%)')
@@ -626,7 +653,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Max_Drawdown']*100, width, 
                       color='red', alpha=0.6, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Max_Drawdown']*100, width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Max_Drawdown']*100, width,
                           color='darkred', alpha=0.6, label='Underlying Asset')
         ax.set_title('Maximum Drawdown Comparison', fontweight='bold', fontsize=12)
         ax.set_ylabel('Max Drawdown (%)')
@@ -727,7 +754,7 @@ class UnifiedREXSystemEnglish:
         bars1 = ax.bar(x - width/2, etf_data['Current_Price'], width, 
                       color=etf_colors, alpha=0.8, label='REX ETF')
         if not underlying_data.empty:
-            bars2 = ax.bar(x + width/2, underlying_data['Current_Price'], width,
+            bars2 = ax.bar(x[underlying_positions] + width/2, underlying_data['Current_Price'], width,
                           color=underlying_colors, alpha=0.8, label='Underlying Asset')
         ax.set_title('Current Market Prices', fontweight='bold', fontsize=12)
         ax.set_ylabel('Price ($)')
