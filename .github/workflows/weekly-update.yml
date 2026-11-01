@@ -153,6 +153,7 @@ jobs:
         rm -rf _site
         mkdir -p _site/data
         cp -R dashboard/. _site/
+        grep -q '<title>NVII Investment Dashboard</title>' _site/index.html
         cp -R compare _site/compare
         cp -R option-income _site/option-income
         grep -q '<title>Option Income BI</title>' _site/option-income/index.html
@@ -187,12 +188,13 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
-    - name: Verify deployed compare page
+    - name: Verify deployed dashboard and compare pages
       env:
         PAGE_URL: ${{ steps.deployment.outputs.page_url }}
       run: |
         for attempt in 1 2 3 4 5 6; do
-          if curl --fail --silent --show-error --location "${PAGE_URL}compare/" -o /tmp/compare.html && \
+          if curl --fail --silent --show-error --location "${PAGE_URL}" -o /tmp/dashboard.html && \
+             curl --fail --silent --show-error --location "${PAGE_URL}compare/" -o /tmp/compare.html && \
              curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-active-observations.json" -o /tmp/observations.json && \
              curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-distributions.json" -o /tmp/distributions.json && \
              curl --fail --silent --show-error --location "${PAGE_URL}option-income/" -o /tmp/option-income.html && \
@@ -204,6 +206,7 @@ jobs:
           fi
           sleep 10
         done
+        grep -q '<title>NVII Investment Dashboard</title>' /tmp/dashboard.html
         grep -q 'REX Growth & Income 比較' /tmp/compare.html
         grep -q '<title>Option Income BI</title>' /tmp/option-income.html
         python - <<'PY'
@@ -221,5 +224,5 @@ jobs:
         assert groups['NVDA'] == {'NVDA', 'NVII', 'NVDY', 'NVIT'}
         assert groups['TSLA'] == {'TSLA', 'TSII', 'TSLY', 'TEST'}
         PY
-        echo "Verified ${PAGE_URL}compare/ and ${PAGE_URL}option-income/"
+        echo "Verified ${PAGE_URL} dashboard, compare/ and option-income/"
 
