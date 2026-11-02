@@ -1,6 +1,6 @@
 # REX Growth & Income ETF Family - Comprehensive Analysis Report
 
-**Generated:** October 27, 2026 at 04:00:44
+**Generated:** November 02, 2026 at 14:08:20
 
 ## Executive Summary
 
@@ -13,46 +13,11 @@ This analysis compares REX ETFs directly with their underlying assets, including
 
 ### Key Highlights
 
-- **Best Total Return:** TSII (39.00%)
-- **Highest Dividend Yield:** TSII (61.83%)
-- **Best Risk-Adjusted Return:** NVII (Sharpe Ratio: 1.742)
+- **Best Total Return:** TSII (36.93%)
+- **Highest Dividend Yield:** TSII (57.71%)
+- **Best Risk-Adjusted Return:** NVII (Sharpe Ratio: 1.877)
 
 ## Individual ETF Analysis vs Underlying Assets
-
-### NVII - REX NVDA Growth & Income ETF
-
-**Sector:** Technology/AI  
-**Underlying Asset:** NVDA (NVIDIA Corporation)  
-**Investment Theme:** Core AI revolution leader and semiconductor champion
-
-**REX ETF Performance:**
-- Current Price: $23.10
-- Total Return (incl. dividends): 32.39%
-- Annualized Return: 74.49%
-- Dividend Yield: 51.14%
-- Volatility: 40.19%
-- Sharpe Ratio: 1.742
-- Maximum Drawdown: -11.53%
-- Estimated Leverage: 1.02x
-- Excess Return vs Underlying: +32.44%
-
-**Dividend Distribution:**
-- Weekly Dividend Payments: 26
-- Average Weekly Dividend: $0.224
-- Dividend Consistency Score: 60.1%
-
-**Underlying Asset Performance (NVDA):**
-- Total Return (incl. dividends): 0.18%
-- Annualized Return: 0.35%
-- Dividend Yield: 0.46%
-- Volatility: 38.84%
-- Sharpe Ratio: -0.107
-- Maximum Drawdown: -19.21%
-
-**REX Strategy Value-Add:**
-- Income Enhancement: +50.7% yield advantage
-- Risk Management: Lower drawdown profile
-- Total Return Premium: +32.4% excess return
 
 ### TSII - REX TSLA Growth & Income ETF
 
@@ -61,33 +26,68 @@ This analysis compares REX ETFs directly with their underlying assets, including
 **Investment Theme:** EV revolution leader and autonomous technology pioneer
 
 **REX ETF Performance:**
-- Current Price: $13.99
-- Total Return (incl. dividends): 39.00%
-- Annualized Return: 92.21%
-- Dividend Yield: 61.83%
-- Volatility: 51.75%
-- Sharpe Ratio: 1.695
-- Maximum Drawdown: -29.40%
+- Current Price: $14.35
+- Total Return (incl. dividends): 36.93%
+- Annualized Return: 86.58%
+- Dividend Yield: 57.71%
+- Volatility: 51.94%
+- Sharpe Ratio: 1.580
+- Maximum Drawdown: -29.36%
 - Estimated Leverage: 1.05x
-- Excess Return vs Underlying: +35.58%
+- Excess Return vs Underlying: +33.41%
 
 **Dividend Distribution:**
 - Weekly Dividend Payments: 26
-- Average Weekly Dividend: $0.165
-- Dividend Consistency Score: 65.8%
+- Average Weekly Dividend: $0.159
+- Dividend Consistency Score: 68.9%
 
 **Underlying Asset Performance (TSLA):**
-- Total Return (incl. dividends): 3.42%
-- Annualized Return: 6.90%
+- Total Return (incl. dividends): 3.53%
+- Annualized Return: 7.12%
 - Dividend Yield: 0.00%
-- Volatility: 49.00%
-- Sharpe Ratio: 0.049
+- Volatility: 49.16%
+- Sharpe Ratio: 0.053
 - Maximum Drawdown: -33.00%
 
 **REX Strategy Value-Add:**
-- Income Enhancement: +61.8% yield advantage
+- Income Enhancement: +57.7% yield advantage
 - Risk Management: Lower drawdown profile
-- Total Return Premium: +35.6% excess return
+- Total Return Premium: +33.4% excess return
+
+### NVII - REX NVDA Growth & Income ETF
+
+**Sector:** Technology/AI  
+**Underlying Asset:** NVDA (NVIDIA Corporation)  
+**Investment Theme:** Core AI revolution leader and semiconductor champion
+
+**REX ETF Performance:**
+- Current Price: $21.75
+- Total Return (incl. dividends): 34.55%
+- Annualized Return: 80.19%
+- Dividend Yield: 55.06%
+- Volatility: 40.32%
+- Sharpe Ratio: 1.877
+- Maximum Drawdown: -12.69%
+- Estimated Leverage: 1.03x
+- Excess Return vs Underlying: +31.07%
+
+**Dividend Distribution:**
+- Weekly Dividend Payments: 26
+- Average Weekly Dividend: $0.224
+- Dividend Consistency Score: 60.0%
+
+**Underlying Asset Performance (NVDA):**
+- Total Return (incl. dividends): 3.72%
+- Annualized Return: 7.51%
+- Dividend Yield: 0.50%
+- Volatility: 38.65%
+- Sharpe Ratio: 0.078
+- Maximum Drawdown: -19.21%
+
+**REX Strategy Value-Add:**
+- Income Enhancement: +54.6% yield advantage
+- Risk Management: Lower drawdown profile
+- Total Return Premium: +31.1% excess return
 
 
 ## REX Strategy Framework
