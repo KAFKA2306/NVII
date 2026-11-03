@@ -182,7 +182,7 @@ jobs:
         assert Path('_site/data/option-income-comparison.json').is_file()
         PY
     - name: Upload to GitHub Pages
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v4
       with:
         path: ./_site
     - name: Deploy to GitHub Pages
