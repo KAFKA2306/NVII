@@ -1,6 +1,6 @@
 # REX Growth & Income ETF Family - Comprehensive Analysis Report
 
-**Generated:** November 03, 2026 at 17:03:15
+**Generated:** November 03, 2026 at 17:58:44
 
 ## Executive Summary
 

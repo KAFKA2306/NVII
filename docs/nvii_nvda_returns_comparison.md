@@ -1,7 +1,7 @@
 # NVII vs NVDA Total Returns Comparison Analysis
 
 **Analysis Period:** 2021-01-01 to 2026-11-03
-**Generated:** 2026-11-03 17:03:17
+**Generated:** 2026-11-03 17:58:46
 
 ## Summary Statistics
 
