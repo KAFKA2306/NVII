@@ -112,7 +112,7 @@ jobs:
         fi
     - name: Upload dashboard artifact
       if: steps.market_check.outputs.market_open == 'true'
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
         name: nvii-dashboard-${{ github.run_number }}
         path: |
@@ -147,7 +147,7 @@ jobs:
       with:
         ref: main
     - name: Setup Pages
-      uses: actions/configure-pages@v4
+      uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
     - name: Assemble Pages site
       run: |
         rm -rf _site
@@ -182,7 +182,7 @@ jobs:
         assert Path('_site/data/option-income-comparison.json').is_file()
         PY
     - name: Upload to GitHub Pages
-      uses: actions/upload-pages-artifact@v4
+      uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
       with:
         path: ./_site
     - name: Deploy to GitHub Pages
