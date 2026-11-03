@@ -1,6 +1,6 @@
 # REX Growth & Income ETF Family - Comprehensive Analysis Report
 
-**Generated:** November 02, 2026 at 14:08:20
+**Generated:** November 03, 2026 at 16:02:30
 
 ## Executive Summary
 
@@ -13,9 +13,9 @@ This analysis compares REX ETFs directly with their underlying assets, including
 
 ### Key Highlights
 
-- **Best Total Return:** TSII (36.93%)
-- **Highest Dividend Yield:** TSII (57.71%)
-- **Best Risk-Adjusted Return:** NVII (Sharpe Ratio: 1.877)
+- **Best Total Return:** NVII (34.02%)
+- **Highest Dividend Yield:** TSII (57.26%)
+- **Best Risk-Adjusted Return:** NVII (Sharpe Ratio: 1.824)
 
 ## Individual ETF Analysis vs Underlying Assets
 
@@ -26,15 +26,15 @@ This analysis compares REX ETFs directly with their underlying assets, including
 **Investment Theme:** EV revolution leader and autonomous technology pioneer
 
 **REX ETF Performance:**
-- Current Price: $14.35
-- Total Return (incl. dividends): 36.93%
-- Annualized Return: 86.58%
-- Dividend Yield: 57.71%
-- Volatility: 51.94%
-- Sharpe Ratio: 1.580
+- Current Price: $13.95
+- Total Return (incl. dividends): 33.10%
+- Annualized Return: 75.57%
+- Dividend Yield: 57.26%
+- Volatility: 51.77%
+- Sharpe Ratio: 1.373
 - Maximum Drawdown: -29.36%
 - Estimated Leverage: 1.05x
-- Excess Return vs Underlying: +33.41%
+- Excess Return vs Underlying: +31.57%
 
 **Dividend Distribution:**
 - Weekly Dividend Payments: 26
@@ -42,17 +42,17 @@ This analysis compares REX ETFs directly with their underlying assets, including
 - Dividend Consistency Score: 68.9%
 
 **Underlying Asset Performance (TSLA):**
-- Total Return (incl. dividends): 3.53%
-- Annualized Return: 7.12%
+- Total Return (incl. dividends): 1.53%
+- Annualized Return: 3.03%
 - Dividend Yield: 0.00%
-- Volatility: 49.16%
-- Sharpe Ratio: 0.053
+- Volatility: 48.97%
+- Sharpe Ratio: -0.030
 - Maximum Drawdown: -33.00%
 
 **REX Strategy Value-Add:**
-- Income Enhancement: +57.7% yield advantage
+- Income Enhancement: +57.3% yield advantage
 - Risk Management: Lower drawdown profile
-- Total Return Premium: +33.4% excess return
+- Total Return Premium: +31.6% excess return
 
 ### NVII - REX NVDA Growth & Income ETF
 
@@ -61,15 +61,15 @@ This analysis compares REX ETFs directly with their underlying assets, including
 **Investment Theme:** Core AI revolution leader and semiconductor champion
 
 **REX ETF Performance:**
-- Current Price: $21.75
-- Total Return (incl. dividends): 34.55%
-- Annualized Return: 80.19%
-- Dividend Yield: 55.06%
-- Volatility: 40.32%
-- Sharpe Ratio: 1.877
-- Maximum Drawdown: -12.69%
+- Current Price: $21.66
+- Total Return (incl. dividends): 34.02%
+- Annualized Return: 77.98%
+- Dividend Yield: 54.63%
+- Volatility: 40.29%
+- Sharpe Ratio: 1.824
+- Maximum Drawdown: -14.10%
 - Estimated Leverage: 1.03x
-- Excess Return vs Underlying: +31.07%
+- Excess Return vs Underlying: +29.64%
 
 **Dividend Distribution:**
 - Weekly Dividend Payments: 26
@@ -77,17 +77,17 @@ This analysis compares REX ETFs directly with their underlying assets, including
 - Dividend Consistency Score: 60.0%
 
 **Underlying Asset Performance (NVDA):**
-- Total Return (incl. dividends): 3.72%
-- Annualized Return: 7.51%
+- Total Return (incl. dividends): 4.61%
+- Annualized Return: 9.29%
 - Dividend Yield: 0.50%
-- Volatility: 38.65%
-- Sharpe Ratio: 0.078
+- Volatility: 38.67%
+- Sharpe Ratio: 0.124
 - Maximum Drawdown: -19.21%
 
 **REX Strategy Value-Add:**
-- Income Enhancement: +54.6% yield advantage
+- Income Enhancement: +54.1% yield advantage
 - Risk Management: Lower drawdown profile
-- Total Return Premium: +31.1% excess return
+- Total Return Premium: +29.6% excess return
 
 
 ## REX Strategy Framework
