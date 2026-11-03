@@ -1,13 +1,13 @@
 # NVII vs NVDA Total Returns Comparison Analysis
 
 **Analysis Period:** 2021-01-01 to 2026-11-03
-**Generated:** 2026-11-03 17:58:46
+**Generated:** 2026-11-03 18:58:31
 
 ## Summary Statistics
 
 | Metric | NVII | NVDA | Difference |
 |--------|------|------|------------|
-| Total Return | 301.26% | 1456.75% | -1155.48% |
+| Total Return | 301.26% | 1456.74% | -1155.48% |
 | Annualized Total Return | 163.77% | 60.35% | +103.42% |
 | Annualized Price Return | 40.59% | 60.21% | -19.63% |
 | Annualized Dividend Yield | 94.36% | 0.83% | +93.52% |
