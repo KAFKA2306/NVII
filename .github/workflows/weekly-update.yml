@@ -198,7 +198,10 @@ jobs:
              curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-active-observations.json" -o /tmp/observations.json && \
              curl --fail --silent --show-error --location "${PAGE_URL}data/rex-growth-income-distributions.json" -o /tmp/distributions.json && \
              curl --fail --silent --show-error --location "${PAGE_URL}option-income/" -o /tmp/option-income.html && \
-             curl --fail --silent --show-error --location "${PAGE_URL}data/option-income-comparison.json" -o /tmp/option-income.json; then
+             curl --fail --silent --show-error --location "${PAGE_URL}data/option-income-comparison.json" -o /tmp/option-income.json && \
+             grep -q '<title>NVII Investment Dashboard</title>' /tmp/dashboard.html && \
+             grep -q 'REX Growth & Income 比較' /tmp/compare.html && \
+             grep -q '<title>Option Income BI</title>' /tmp/option-income.html; then
             break
           fi
           if [ "$attempt" -eq 6 ]; then
@@ -206,9 +209,6 @@ jobs:
           fi
           sleep 10
         done
-        grep -q '<title>NVII Investment Dashboard</title>' /tmp/dashboard.html
-        grep -q 'REX Growth & Income 比較' /tmp/compare.html
-        grep -q '<title>Option Income BI</title>' /tmp/option-income.html
         python - <<'PY'
         import json
         from pathlib import Path
