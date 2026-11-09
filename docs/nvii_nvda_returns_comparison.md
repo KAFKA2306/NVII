@@ -1,23 +1,23 @@
 # NVII vs NVDA Total Returns Comparison Analysis
 
-**Analysis Period:** 2021-01-01 to 2026-11-04
-**Generated:** 2026-11-04 02:05:09
+**Analysis Period:** 2021-01-01 to 2026-11-09
+**Generated:** 2026-11-09 14:28:33
 
 ## Summary Statistics
 
 | Metric | NVII | NVDA | Difference |
 |--------|------|------|------------|
-| Total Return | 322.66% | 1492.42% | -1169.75% |
-| Annualized Total Return | 172.76% | 60.93% | +111.83% |
-| Annualized Price Return | 43.38% | 60.79% | -17.40% |
-| Annualized Dividend Yield | 96.58% | 0.83% | +95.75% |
-| Annualized Volatility | 36.69% | 50.38% | -13.68% |
-| Sharpe Ratio | 4.586 | 1.120 | +3.465 |
-| Maximum Drawdown | -14.08% | -66.31% | +52.23% |
+| Total Return | 269.72% | 1337.94% | -1068.22% |
+| Annualized Total Return | 146.64% | 57.98% | +88.66% |
+| Annualized Price Return | 30.34% | 57.84% | -27.50% |
+| Annualized Dividend Yield | 95.79% | 0.83% | +94.96% |
+| Annualized Volatility | 38.20% | 50.51% | -12.30% |
+| Sharpe Ratio | 3.721 | 1.059 | +2.662 |
+| Maximum Drawdown | -24.27% | -66.31% | +42.03% |
 
 ## Price Performance
-- **NVII**: $12.95 → $21.73 (67.81%)
-- **NVDA**: $13.05 → $206.69 (1484.29%)
+- **NVII**: $12.95 → $19.01 (46.79%)
+- **NVDA**: $13.05 → $186.64 (1330.61%)
 
 ## Dividend Analysis
 - **NVII Total Dividends**: $17.97 per share
@@ -26,11 +26,11 @@
 - **NVDA Dividend Contribution**: 4.84% of total return
 
 ## Risk-Adjusted Performance
-- **Superior Risk-Adjusted Returns**: NVII (Sharpe difference: 3.465)
-- **NVII Max Drawdown**: -14.08%
+- **Superior Risk-Adjusted Returns**: NVII (Sharpe difference: 2.662)
+- **NVII Max Drawdown**: -24.27%
 - **NVDA Max Drawdown**: -66.31%
 
 ## Key Insights
-1. **NVDA outperformed NVII** by 1169.75% in total returns
-2. **Dividend Impact**: NVII's dividends contributed 43.0% of its total return
-3. **Volatility**: NVII showed 36.69% vs NVDA's 50.38% annualized volatility
+1. **NVDA outperformed NVII** by 1068.22% in total returns
+2. **Dividend Impact**: NVII's dividends contributed 51.4% of its total return
+3. **Volatility**: NVII showed 38.20% vs NVDA's 50.51% annualized volatility

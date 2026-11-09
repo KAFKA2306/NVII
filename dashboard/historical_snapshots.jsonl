@@ -10,3 +10,4 @@
 {"timestamp": "2026-11-03 17:58:50", "nvii_price": 21.350000381469727, "nvda_price": 202.05999755859375, "nvii_dividend_yield": 0.5104628159823954, "nvii_volatility": 0.30625610931899644, "sharpe_ratio": 1.519848263655597, "alerts_count": 1}
 {"timestamp": "2026-11-03 18:58:34", "nvii_price": 21.350000381469727, "nvda_price": 202.05999755859375, "nvii_dividend_yield": 0.5104627723037718, "nvii_volatility": 0.30625598438118823, "sharpe_ratio": 1.5198487410597774, "alerts_count": 1}
 {"timestamp": "2026-11-04 02:05:12", "nvii_price": 21.73200035095215, "nvda_price": 206.69000244140625, "nvii_dividend_yield": 0.5324757909043891, "nvii_volatility": 0.32905239009213894, "sharpe_ratio": 1.4814534268171995, "alerts_count": 1}
+{"timestamp": "2026-11-09 14:28:36", "nvii_price": 19.010000228881836, "nvda_price": 186.63999938964844, "nvii_dividend_yield": 0.4888422923989018, "nvii_volatility": 0.49692459051811905, "sharpe_ratio": 0.8931783632122715, "alerts_count": 2}
